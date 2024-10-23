@@ -1,0 +1,30 @@
+{
+	"name": "aca",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "vite dev --open",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/kit": "^2.5.27",
+		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"@types/luxon": "^3.4.2",
+		"sass": "^1.78.0",
+		"svelte": "^5.0.0",
+		"svelte-check": "^4.0.0",
+		"svelte-preprocess": "^6.0.2",
+		"typescript": "^5.5.0",
+		"utopia-core-scss": "^1.1.0",
+		"vite": "^5.4.4"
+	},
+	"type": "module",
+	"dependencies": {
+		"contentful": "^10.15.0",
+		"luxon": "^3.5.0"
+	}
+}

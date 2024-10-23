@@ -1,0 +1,54 @@
+@use 'node_modules/utopia-core-scss/src/utopia' as utopia;
+
+$body_font: "FT Kunst Grotesk", Helvetica, sans-serif;
+$heading_font: "FT Kunst Grotesk", Helvetica, sans-serif;
+$mono_font: monospace;
+
+$dark: #000;
+$light: #FFF;
+$muted: fade-out(#000, 0.85);
+$grey: #76756E;
+
+$beige: #E8E8E1;
+$taupe: #BDBEB8;
+
+$accent: $taupe;
+
+$base: 20px;
+
+  
+/* @link https://utopia.fyi/type/calculator?c=393,12,1.618,1525,16,1.618,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+:root {
+  @include utopia.generateTypeScale((
+    "minWidth": 393,
+    "maxWidth": 1525,
+    "minFontSize": 12,
+    "maxFontSize": 16,
+    "minTypeScale": 1.618,
+    "maxTypeScale": 1.618,
+    "positiveSteps": 5,
+    "negativeSteps": 2,
+    "prefix": "step-",
+    "relativeTo": "viewport-width"
+  ));
+}
+
+// $s-3: var(--step--3);
+$s-2: var(--step--2);
+$s-1: var(--step--1);
+$s0: var(--step-0);
+$s1: var(--step-1);
+$s2: var(--step-2);
+$s3: var(--step-3);
+$s4: var(--step-4);
+$s5: var(--step-5);
+$s6: var(--step-6);
+// $s7: var(--step-7);
+
+$radius: $s0;
+$max: 1440px;
+
+$mobile: 888px;
+
+$number_of_columns: 12;
