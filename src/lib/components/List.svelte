@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { type TypeListSkeleton, type TypeTextSkeleton, isTypeArticle, isTypeText } from '$lib/clients/content_types'
+  import { type TypeListSkeleton, type TypeTextSkeleton, isTypeArticle, isTypeProjet, isTypeText } from '$lib/clients/content_types'
   import type { Entry } from 'contentful'
 
   import emblaCarouselSvelte from 'embla-carousel-svelte'
@@ -9,6 +9,7 @@
   import Text from './Text.svelte'
   import Article from './Article.svelte'
   import Link from './Link.svelte'
+  import Projet from './Projet.svelte'
   // import Question from './Question.svelte'
 
   let { item }: {
@@ -30,7 +31,44 @@
   ]
 </script>
 
-<section class="list {item.fields.type}" id={item.fields.id}>
+<section class="list flex flex--gapped {item.fields.type}" id={item.fields.id}>
+  {#if item.fields.titre}
+  <h4 class="col col--4of12">{@html item.fields.titre.replaceAll('\\n', '<br />')}</h4>
+  {/if}
+
+  {#if item.fields.items && item.fields.items.length > 0}
+    {#if item.fields.type === 'Slider'}
+    <div class="embla" use:emblaCarouselSvelte={{ options: { ...options }, plugins, }} onemblaInit={e => embla = e.detail}>
+      <ul class="list--nostyle embla__container">
+        {#each item.fields.items as listItem, index}
+        <li class="embla__slide" style:--slide-width={'33.33%'}>
+          {#if isTypeText(listItem)}
+            <Text item={listItem} first={index === 0} />
+          {:else if isTypeArticle(listItem)}
+            <Article article={listItem} />
+          {:else if isTypeProjet(listItem)}
+            <Projet item={listItem} />
+          {/if}
+        </li>
+        {/each}
+      </ul>
+    </div>
+    {:else}
+    <ul class="list--nostyle flex flex--gapped">
+      {#each item.fields.items as listItem, index}
+      <li class="col col--4of12">
+      {#if isTypeText(listItem)}
+        <Text item={listItem} first={index === 0} />
+      {:else if isTypeArticle(listItem)}
+        <Article article={listItem} />
+      {:else if isTypeProjet(listItem)}
+        <Projet item={listItem} />
+      {/if}
+      </li>
+      {/each}
+    </ul>
+    {/if}
+  {/if}
   <!-- {#if item.fields.titre}
     <hr />
     <div class="flex flex--gapped">
@@ -49,25 +87,7 @@
     </div>
   {/if}
 
-  {#if item.fields.items && item.fields.items.length > 0}
-    {#if item.fields.type === 'Slider'}
-    <div class="embla" use:emblaCarouselSvelte={{ options: { ...options }, plugins, }} onemblaInit={e => embla = e.detail}>
-      <ul class="embla__container">
-        {#each item.fields.items as listItem, index}
-        <li class="embla__slide" style:--slide-width={isTypeText(listItem)
-          ? '80%'
-          : isTypeArticle(listItem)
-          ? listItem.fields.vedette ? '60%' : '30%'
-          : '100%'}>
-          {#if isTypeText(listItem)}
-            <Text item={listItem} first={index === 0} />
-          {:else if isTypeArticle(listItem)}
-            <Article article={listItem} />
-          {/if}
-        </li>
-        {/each}
-      </ul>
-    </div>
+  
     {:else}
     <ul class="list--nostyle flex flex--gapped" class:flex--thick_gapped={item.fields.type === 'Colonnes'}>
       {#each item.fields.items as listItem, index}
@@ -120,267 +140,24 @@
 
 <style lang="scss">
   .list {
-    padding: $s1 0;
-
-    h4 {
-      margin-bottom: $s2;
-    }
     
+  }
 
-    ul {
+  .embla {
+    overflow: hidden;
+    // margin: 0 calc(-1 * $s1);
 
-      &:has(details.Italics),
-      &:has(details.Pilules) {
-        display: flex;
-        flex-direction: column;
-        // gap: $s1;
-        gap: $s-1;
-        position: relative;
-      }
-
-       &:has(details.Italics) {
-        border-left: 1px solid;
-        padding-left: $s0;
-        min-height: 50lvh;
-      }
-
-      &:has(details.Accordeon) {
-        flex-direction: column;
-        gap: 0;
-
-        :global(li) {
-          width: 100%;
-        }
-      }
+    .embla__container {
+      display: flex;
+      
     }
 
-    &.Colonnes {
-      > hr {
-        display: none;
-      }
-
-      h4 {
-        text-align: center;
-        margin: $s3 auto;
-      }
-
-      ul {
-        li {
-
-          &:not(.col--3of12):nth-child(even) {
-            margin-top: 20vw;
-          }
-
-          :global(section) {
-            padding: $s-1;
-
-            :global(.corps) {
-              width: 100%;
-            }
-
-            :global(.media) {
-              order: -1;
-              width: 100%;
-
-              :global(img) {
-                border-radius: 0;
-                border-top-left-radius: $s-1;
-                border-top-right-radius: $s-1;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    details {
-      summary {
-        cursor: pointer;
-      }
-
-      &.Pilules,
-      &.Italics {
-        article {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: calc(100% - 425px - $s1);
-          height: 100%;
-        }
-
-        &[open] {
-          summary {
-            pointer-events: none;
-          }
-        }
-      }
-
-      &.Pilules {
-        summary {
-          padding: $s2;
-          border-radius: $s4;
-          width: 425px;
-          text-align: center;
-        }
-
-        &:not([open]) {
-          summary {
-            // color: $noir;
-            // background-color: $beige-pale;
-          }
-        }
-
-        :global(svg) {
-          position: absolute;
-          top: -1px;
-          right: -1px;
-          height: calc(100% + 2px);
-          width: auto;
-          // color: $blanc;
-        }
-
-        :global(.titre) {
-          display: none;
-        }
-
-        :global(section) {
-          height: 100%;
-        }
-
-        :global(section .corps) {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          width: 50%;
-
-          :global(hr) {
-            margin-top: auto;
-          }
-        }
-      }
-
-      &.Italics {
-        
-        &[open] {
-          summary {
-            font-style: italic;
-          }
-
-          article {
-            border-left: 1px solid;
-            padding-left: $s0;
-          }
-        }
-
-        :global(.titre) {
-          display: none;
-        }
-
-        :global(.media) {
-          margin-top: auto;
-        }
-
-        :global(section) {
-          height: 100%;
-        }
-
-        :global(figure) {
-          max-width: 200px;
-
-          :global(img) {
-            border-radius: 0;
-            border-top-right-radius: $s5;
-          }
-        }
-
-        :global(section div) {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-        }
-      }
-
-      &.Accordeon {
-        width: 100%;
-        border-top: 1px solid rgba($accent, 0.25);
-        // border-bottom: 1px solid;
-
-        :global(.titre) {
-          display: none;
-        }
-
-        summary {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
-          padding: $s-2 0;
-          margin-bottom: 0;
-        }
-
-        article {
-          @media (min-width: $mobile) {
-            padding-left: 50%;
-          }
-        }
-      }
-    }
-
-    .embla {
-      overflow: hidden;
-      margin: 0 calc(-1 * $s1);
-
-      .embla__container {
-        display: flex;
-        
-      }
-
-      .embla__slide {
-        flex: 0 0 var(--slide-width);
-        min-width: 0;
-        max-width: none;
-        width: var(--slide-width);
-        padding-left: $s0;
-      }
-    }
-
-    :has(.question) {
-      justify-content: center;
-    }
-
-    .question {
-      margin: $s-2;
-    }
-
-    &.Timeline {
-      li {
-        :global(section) {
-          align-items: stretch;
-        }
-
-        :global(.titre) {
-          margin-bottom: auto;
-        }
-
-        :global(.media) {
-          order: -1;
-
-          :global(img),
-          :global(video) {
-            border-radius: 0;
-          }
-        }
-
-        &:nth-child(3n) :global(.media) {
-          order: 1;
-        }
-
-        :global(.corps),
-        &:not(:first-child) :global(.media) {
-          border-left: 1px solid;
-          padding-left: $s0;
-        }
-      }
+    .embla__slide {
+      flex: 0 0 var(--slide-width);
+      min-width: 0;
+      max-width: none;
+      width: var(--slide-width);
+      padding-left: $s0;
     }
   }
 </style>

@@ -18,12 +18,12 @@
 
 <svelte:head>
 	{#if $page.data.page?.fields}
-	<title>{$page.data.page.fields.title}</title>
-	<!-- <meta name="description" content={$page.data.page.fields.description} /> -->
+	<title>{$page.data.page.fields.titre}</title>
+	<meta name="description" content={$page.data.page.fields.description} />
 	{/if}
 </svelte:head>
 
-<div class="{$page.route.id?.replaceAll('/', '-').replaceAll('[', '').replaceAll(']', '')} {$page.url.pathname.replaceAll('/', '-')}">
+<div class="{$page.route.id?.replaceAll('/', '-').replaceAll('[', '').replaceAll(']', '')} {$page.url.pathname.replaceAll('/', '-')} {$page.data.page?.fields.dark ? 'dark' : ''}">
 	<!-- <Dialog /> -->
 
 	<!-- <Intro /> -->

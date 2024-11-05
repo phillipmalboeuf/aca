@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { isTypeList, isTypeText, isTypeGallerie, isTypeProjet } from '$lib/clients/content_types'
+  import { isTypeList, isTypeText, isTypeGallerie, isTypeProjet, isTypeArticle } from '$lib/clients/content_types'
 
   // import Hero from '$lib/components/Hero.svelte'
   import List from '$lib/components/List.svelte'
@@ -7,6 +7,7 @@
   // import Form from '$lib/components/Form.svelte'
   import Gallerie from '$lib/components/Gallerie.svelte'
   import Projet from '$lib/components/Projet.svelte'
+  import Article from '$lib/components/Article.svelte'
 
   import type { PageData } from './$types'
   let { data }: { data: PageData } = $props()
@@ -23,7 +24,9 @@
   {:else if isTypeGallerie(item)}
   <Gallerie {item} />
   {:else if isTypeProjet(item)}
-  <Projet {item} />
+  <Projet {item} hero />
+  {:else if isTypeArticle(item)}
+  <Article article={item} />
   {/if}
 </section>
 {/each}

@@ -30,6 +30,11 @@ body {
 	color: $dark;
 	background-color: $beige;
 
+	&:has(.dark) {
+		color: $light;
+		background-color: $grey;
+	}
+
 	@media (max-width: $mobile) {
     font-size: $s-1;
   }

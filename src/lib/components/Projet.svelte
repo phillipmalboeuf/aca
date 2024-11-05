@@ -6,17 +6,17 @@
   import Media from './Media.svelte'
   import Link from './Link.svelte'
 
-  let { item, full = false, first = false }: {
+  let { item, hero = false, first = false }: {
     item: Entry<TypeProjetSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
-    full?: boolean
+    hero?: boolean
     first?: boolean
   } = $props()
 </script>
 
-<section class="hero flex flex--bottom" id={item.fields.id} class:full class:first={first}>
-  <div class="hero__content flex flex--column flex--gapped">
+<section class="flex flex--bottom" id={item.fields.id} class:hero class:first={first}>
+  <div class="flex flex--column flex--gapped">
     {#if item.fields.titre}
-      <h1>{item.fields.titre}</h1>
+      <h3 class:h1={hero}>{item.fields.titre}</h3>
     {/if}
 
     <!-- {#if item.fields.sousTitre}
@@ -35,7 +35,7 @@
   </div>
 
   {#if item.fields.thumbnail}
-    <figure class="hero__media">
+    <figure class="">
       <Media media={item.fields.thumbnail} />
     </figure>
   {/if}
@@ -47,17 +47,8 @@
     text-align: left;
     position: relative;
     overflow: hidden;
-
-    &.full {
-      // margin: 0 calc($s1 * -1);
-      // width: calc(100% + ($s1 * 2));
-
-      // &.first {
-      //   margin-top: calc(($s1 * -2) - ($s1 * 3.5) + 1px);
-      // }
-    }
     
-    &__content {
+    > div {
       align-items: flex-start;
       position: relative;
       z-index: 1;
@@ -65,7 +56,7 @@
       color: $light;
     }
 
-    &__media {
+    > figure {
       margin: 0;
       position: absolute;
       top: 0;

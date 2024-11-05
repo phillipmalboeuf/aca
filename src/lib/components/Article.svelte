@@ -5,51 +5,27 @@
   import { date } from '$lib/formatters'
   
   import Media from './Media.svelte'
+  import Rich from './Rich.svelte'
 
   const { article } : { article: Entry<TypeArticleSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string> } = $props()
 </script>
 
 
-<li>
-  <a href="/articles/{article.fields.id}" class="flex">
-    <article class="flex flex--gapped flex--spaced padded col">
-      <h5>{article.fields.titre}</h5>
+<a href="/articles/{article.fields.id}" class="flex flex--gapped">
+  <figure class="col col--4of12">
+    <Media media={article.fields.thumbnail} />
+  </figure>
 
-      <!-- <em>{article.fields.categorie.fields.titre}</em> -->
-      <date>{date(article.fields.date)}</date>
-    </article>
+  <article class="flex flex--gapped flex--column padded col col--4of12">
+    <date>{date(article.fields.date)}</date>
+    <h5>{article.fields.titre}</h5>
+  </article>
 
-    <figure class="col">
-      <Media media={article.fields.thumbnail} />
-    </figure>
-  </a>
-</li>
+  <div class="col col--4of12">
+    <Rich body={article.fields.corps} />
+  </div>
+</a>
 
 
 <style lang="scss">
-  li {
-    border-radius: $s0;
-    overflow: hidden;
-
-    a {
-      align-items: stretch;
-    }
-
-    article {
-
-      h5 {
-        margin-bottom: $s3;
-      }
-
-      em {
-        margin-top: auto;
-        font-style: normal;
-        opacity: 0.5;
-      }
-
-      date {
-        margin-top: auto;
-      }
-    }
-  }
 </style>

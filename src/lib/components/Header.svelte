@@ -26,13 +26,13 @@
   <a href="/" class="logo" onclick={() => visible = false}>
     <Logo />
   </a>
-  <button class:visible class="button--none h1 col col--4of12" onclick={() => visible = true}>Menu</button>
+  <button class:visible class="button--none h1 col col--4of12" onclick={() => visible = true}><span class="initial">M</span><span>enu</span></button>
   <nav class:visible class="padded flex flex--column h1">
     {#each navigation.fields.links as link}
-    <Link {link} className={$page.url.pathname.includes(link.fields.destination) ? 'active' : undefined} />
+    <Link {link} className={$page.url.pathname.includes(link.fields.destination) ? 'active' : undefined} hide={() => visible = false} />
     {/each}
 
-    <button class="button--none" onclick={() => visible = false}>
+    <button class="button--none" onclick={() => visible = false} aria-label="Fermer le menu">
       <svg width="30" height="30" viewBox="0 0 30 30"><line x1="1.06066" y1="1.0995" x2="28.0607" y2="28.0995" stroke="currentColor" stroke-width="3"/><line x1="28.0607" y1="1.06066" x2="1.06066" y2="28.0607" stroke="currentColor" stroke-width="3"/></svg>
     </button>
   </nav>
@@ -56,7 +56,24 @@
 
     > button {
       justify-content: flex-start;
+      gap: 0;
       transition: opacity 666ms;
+      
+      span {
+        opacity: 0;
+        transition: opacity 666ms;
+
+        &.initial {
+          opacity: 1;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        span {
+          opacity: 1;
+        }
+      }
 
       &.visible {
         opacity: 0;
@@ -70,7 +87,10 @@
       right: 0;
       height: 100lvh;
       width: 33vw;
+      color: $dark;
       background-color: fade-out($color: $light, $amount: 0.3);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
       transition: transform 666ms;
       transform: translateX(100%);
       will-change: transform;
