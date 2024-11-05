@@ -25,6 +25,8 @@
 	"type": "module",
 	"dependencies": {
 		"contentful": "^10.15.0",
+		"embla-carousel-autoplay": "^8.3.1",
+		"embla-carousel-svelte": "^8.3.1",
 		"luxon": "^3.5.0"
 	}
 }
