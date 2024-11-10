@@ -4,7 +4,7 @@
 	import Intro from '$lib/components/Intro.svelte'
 	// import Dialog from '$lib/components/Dialog.svelte'
 	import Header from '$lib/components/Header.svelte'
-	// import Footer from '$lib/components/Footer.svelte'
+	import Footer from '$lib/components/Footer.svelte'
 
 	import { page } from '$app/stores'
 	import type { Snippet } from 'svelte'
@@ -32,12 +32,10 @@
 	<main>
 		{@render children()}
 	</main>
-<!-- 
+
 	<Footer navigation={data.navigations['navigation']}
 		footer={data.navigations['footer']}
-		social={data.navigations['social']}
-		work={data.navigations['work']}
-		disclaimers={data.navigations['disclaimers']} /> -->
+		contact={data.navigations['contact']} />
 </div>
 
 <style lang="scss">

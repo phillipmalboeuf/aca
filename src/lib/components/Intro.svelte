@@ -42,6 +42,7 @@
 <style lang="scss">
   figure {
     position: fixed;
+    z-index: 50;
     inset: 0;
     background-color: $beige;
     padding: $s-1;

@@ -72,6 +72,7 @@ export interface TypeNavigationLinkFields {
     label: EntryFieldTypes.Symbol;
     destination?: EntryFieldTypes.Symbol;
     external?: EntryFieldTypes.Boolean;
+    sousTitre?: EntryFieldTypes.Symbol;
 }
 
 export type TypeNavigationLinkSkeleton = EntrySkeletonType<TypeNavigationLinkFields, "navigationLink">;

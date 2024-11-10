@@ -5,6 +5,7 @@
   import Rich from './Rich.svelte'
   import Media from './Media.svelte'
   import Link from './Link.svelte'
+  import { year } from '$lib/formatters';
 
   let { item, hero = false, first = false }: {
     item: Entry<TypeProjetSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
@@ -13,15 +14,25 @@
   } = $props()
 </script>
 
-<section class="flex flex--bottom" id={item.fields.id} class:hero class:first={first}>
-  <div class="flex flex--column flex--gapped">
-    {#if item.fields.titre}
-      <h3 class:h1={hero}>{item.fields.titre}</h3>
+<a href={`/projets/${item.fields.id}`} class="flex flex--bottom" id={item.fields.id} class:hero class:first={first}>
+  {#if item.fields.thumbnail}
+    <figure class="">
+      <Media media={item.fields.thumbnail} />
+    </figure>
+  {/if}
+
+  <div class="flex" class:flex--column={!hero} class:flex--gapped={hero}>
+    {#if !hero}
+      <date>{year(item.fields.date)}</date>
     {/if}
 
-    <!-- {#if item.fields.sousTitre}
-      <h2>{item.fields.sousTitre}</h2>
-    {/if} -->
+    {#if item.fields.titre}
+      <h3>{item.fields.titre}</h3>
+    {/if}
+
+    {#if item.fields.region}
+      <h3>{item.fields.region}</h3>
+    {/if}
 
     <!-- {#if item.fields.corps}
       <Rich body={item.fields.corps} />
@@ -33,13 +44,7 @@
       </Link>
     {/if} -->
   </div>
-
-  {#if item.fields.thumbnail}
-    <figure class="">
-      <Media media={item.fields.thumbnail} />
-    </figure>
-  {/if}
-</section>
+</a>
 
 <style lang="scss">
   .hero {
@@ -52,7 +57,7 @@
       align-items: flex-start;
       position: relative;
       z-index: 1;
-      padding: $s2;
+      padding: $s-1;
       color: $light;
     }
 

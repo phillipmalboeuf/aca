@@ -10,6 +10,7 @@
   import Article from './Article.svelte'
   import Link from './Link.svelte'
   import Projet from './Projet.svelte'
+  import Rich from './Rich.svelte';
   // import Question from './Question.svelte'
 
   let { item }: {
@@ -33,7 +34,14 @@
 
 <section class="list flex flex--gapped {item.fields.type}" id={item.fields.id}>
   {#if item.fields.titre}
-  <h4 class="col col--4of12">{@html item.fields.titre.replaceAll('\\n', '<br />')}</h4>
+  <h4 class="col col--4of12 col--mobile--12of12">{@html item.fields.titre.replaceAll('\\n', '<br />')}</h4>
+  {/if}
+
+  {#if item.fields.corps}
+  <div class="col col--4of12 col--mobile--12of12"></div>
+  <div class="col col--4of12 col--mobile--12of12">
+    <Rich body={item.fields.corps} />
+  </div>
   {/if}
 
   {#if item.fields.items && item.fields.items.length > 0}
