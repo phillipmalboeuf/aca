@@ -14,24 +14,36 @@
   } = $props()
 </script>
 
-<a href={`/projets/${item.fields.id}`} class="flex flex--bottom" id={item.fields.id} class:hero class:first={first}>
+<a href={`/projets/${item.fields.id}`} class="flex flex--bottom" id={item.fields.id} class:hero class:projet={!hero} class:first={first}>
   {#if item.fields.thumbnail}
     <figure class="">
       <Media media={item.fields.thumbnail} />
     </figure>
   {/if}
 
-  <div class="flex" class:flex--column={!hero} class:flex--gapped={hero}>
+  <div class="flex" class:flex--gapped={hero}>
     {#if !hero}
-      <date>{year(item.fields.date)}</date>
+      <date class="col col--3of12">{year(item.fields.date)}</date>
     {/if}
 
-    {#if item.fields.titre}
-      <h3>{item.fields.titre}</h3>
-    {/if}
+    {#if hero}
+      {#if item.fields.titre}
+        <h4>{item.fields.titre}</h4>
+      {/if}
 
-    {#if item.fields.region}
-      <h3>{item.fields.region}</h3>
+      {#if item.fields.region}
+        <h4>{item.fields.region}</h4>
+      {/if}
+    {:else}
+      <aside class="col col--9of12 flex flex--column">
+        {#if item.fields.titre}
+          <h4>{item.fields.titre}</h4>
+        {/if}
+
+        {#if item.fields.region}
+          <h4>{item.fields.region}</h4>
+        {/if}
+      </aside>
     {/if}
 
     <!-- {#if item.fields.corps}
@@ -47,6 +59,13 @@
 </a>
 
 <style lang="scss">
+  .projet {
+    
+    figure {
+      margin-bottom: $s-1;
+    }
+  }
+
   .hero {
     min-height: 100lvh;
     text-align: left;

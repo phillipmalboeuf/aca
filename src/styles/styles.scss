@@ -101,7 +101,7 @@ h2,
 
 h3,
 .h3 {
-	font-size: $s0;
+	font-size: calc($s1 - 4px);
 
 	// @media (max-width: $mobile) {
   //   font-size: calc($s3 - 2px);
@@ -519,7 +519,7 @@ strong,
 	}
 
   &.flex--gapped {
-    --gap: #{$s0};
+    --gap: #{$s-1};
 
     @media (max-width: $mobile) {
       --gap: #{$s-1};

@@ -34,7 +34,7 @@
 
 <section class="list flex flex--gapped {item.fields.type}" id={item.fields.id}>
   {#if item.fields.titre}
-  <h4 class="col col--4of12 col--mobile--12of12">{@html item.fields.titre.replaceAll('\\n', '<br />')}</h4>
+  <h3 class="col col--4of12 col--mobile--12of12">{@html item.fields.titre.replaceAll('\\n', '<br />')}</h3>
   {/if}
 
   {#if item.fields.corps}
@@ -148,6 +148,33 @@
 
 <style lang="scss">
   .list {
+    &.Colonnes {
+      row-gap: 0;
+
+      ul {
+        row-gap: 0;
+      }
+      
+      > .col,
+      ul > .col {
+        border-right: 1px solid $muted;
+        padding-bottom: $s4;
+
+        &:not(:nth-child(3n)) {
+          padding-right: $s-1;
+        }
+
+        &:nth-child(3n) {
+          border-right-color: transparent;
+        }
+      }
+
+      ul > .col {
+        &:nth-child(3n - 1) {
+          padding-top: 25vw;
+        }
+      }
+    }
     
   }
 

@@ -16,7 +16,7 @@
 <footer class="padded flex flex--gapped">
   <div class="col col--4of12">
     <a href="/" class="logo">
-      <h2>Anne Carrier Architectures</h2>
+      <h3>Anne Carrier Architectures</h3>
     </a>
   </div>
   
@@ -47,21 +47,23 @@
   </div>
 
   <div class="col col--4of12">
-    <small>© Anne Carrier Architectures 2024</small>
+    <nav class="flex flex--gapped flex--bottom">
+      <small>© Anne Carrier Architectures 2024</small>
+    </nav>
   </div>
 
   <div class="col col--4of12">
     {#if footer?.fields.links?.length}
-      <nav class="flex flex--gapped">
+      <nav class="flex flex--gapped flex--bottom">
         {#each footer.fields.links.slice(0, -1) as link}
-          <small><Link {link} /></small>
+          <small class="col col--5of12"><Link {link} /></small>
         {/each}
       </nav>
     {/if}
   </div>
   <div class="col col--4of12">
     {#if footer?.fields.links?.length > 1}
-      <nav>
+      <nav class="flex flex--gapped flex--bottom">
         <small><Link link={footer.fields.links[footer.fields.links.length - 1]} /></small>
       </nav>
     {/if}
@@ -73,6 +75,7 @@
     padding: $s1 $s0 $s0;
     color: $dark;
     background-color: rgba($light, 0.25);
+    row-gap: 0;
 
     .logo {
     }
@@ -86,8 +89,16 @@
       div {
         &.Courriel,
         &.Média-Sociaux {
-          margin-bottom: calc($s0 * -1);
+          margin-bottom: calc($s-1 * -1);
         }
+      }
+    }
+
+    > .col {
+      border-right: 1px solid $muted;
+
+      &:nth-child(3n) {
+        border-right-color: transparent;
       }
     }
   }
