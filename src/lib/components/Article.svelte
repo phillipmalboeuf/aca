@@ -11,7 +11,7 @@
 </script>
 
 
-<a href="/articles/{article.fields.id}" class="flex flex--gapped">
+<div class="flex flex--gapped">
   <figure class="col col--4of12">
     <Media media={article.fields.thumbnail} />
   </figure>
@@ -24,7 +24,7 @@
   <div class="col col--4of12">
     <Rich body={article.fields.corps} />
   </div>
-</a>
+</div>
 
 
 <style lang="scss">

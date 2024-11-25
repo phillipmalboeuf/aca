@@ -58,6 +58,7 @@
       justify-content: flex-start;
       gap: 0;
       transition: opacity 666ms;
+      line-height: 0;
       
       span {
         opacity: 0;

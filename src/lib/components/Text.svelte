@@ -23,10 +23,18 @@
   // })
 </script>
 
-<section class="flex flex--gapped" class:no-media={!item.fields.media} id={item.fields.id}>
-  <div class:col--6of12={!!item.fields.media} class:col--12of12={!item.fields.media} class="corps col flex flex--column flex--gapped">
+<section class="flex flex--gapped flex--center" class:no-media={!item.fields.media} id={item.fields.id}>
+  {#if item.fields.media}
+  <div class="col col--9of12 media">
+    <figure>
+      <Media media={item.fields.media} rounded />
+    </figure>
+  </div>
+  {/if}
+
+  <div class="col col--12of12 flex flex--gapped">
     {#if item.fields.titre}
-    <div class="titre flex flex--column flex--gapped">
+    <div class:col--4of12={!!item.fields.media} class="titre col flex flex--column flex--gapped">
       <!-- {#if item.fields.sousTitre}
         <small>{@html item.fields.sousTitre.replaceAll('\\n', '<br />')}</small>
       {/if} -->
@@ -35,27 +43,19 @@
     {/if}
 
     {#if item.fields.corps}
-    <div class="flex flex--column flex--gapped">
+    <div class:col--8of12={!!item.fields.media} class="flex corps col flex--column flex--gapped">
       <Rich body={item.fields.corps} />
+
+      {#if item.fields.liens?.length}
+      <ul class="list--nostyle">
+        {#each item.fields.liens as link}
+          <li><Link className="button button--muted" {link} /></li>
+        {/each}
+      </ul>
+      {/if}
     </div>
     {/if}
-
-    {#if item.fields.liens?.length}
-    <ul class="list--nostyle">
-      {#each item.fields.liens as link}
-        <li><Link className="button button--muted" {link} /></li>
-      {/each}
-    </ul>
-    {/if}
   </div>
-
-  {#if item.fields.media}
-  <div class="col col--6of12 media">
-    <figure>
-      <Media media={item.fields.media} rounded />
-    </figure>
-  </div>
-  {/if}
 </section>
 
 <style lang="scss">
@@ -72,13 +72,33 @@
       display: inline-flex;
       width: auto;
       margin: 0 auto;
+      height: 100%;
       justify-content: center;
       text-align: left;
+
+      .corps {
+        height: 100%;
+      }
     }
 
-    // &.padded {
-    //   border-radius: $s0;
-    // }
+    &:not(.no-media) {
+      .titre {
+        border-right: 1px solid $muted;
+      }
+
+      .corps {
+        padding-bottom: $s4;
+      }
+    }
+
+    .media {
+      margin-bottom: $s2;
+    }
+
+    :global(hr) {
+      margin: auto 0;
+      background-color: transparent;
+    }
   }
 
   // :global(section:has(> .no-media)) {

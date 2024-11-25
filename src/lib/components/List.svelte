@@ -169,7 +169,7 @@
         }
       }
 
-      ul > .col {
+      &#projets-accueil ul > .col {
         &:nth-child(3n - 1) {
           padding-top: 25vw;
         }
