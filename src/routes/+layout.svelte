@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { ParaglideJS } from '@inlang/paraglide-sveltekit'
+	import { i18n } from '$lib/i18n'
+
 	import '../styles/styles.scss'
 
 	import Intro from '$lib/components/Intro.svelte'
@@ -23,6 +26,7 @@
 	{/if}
 </svelte:head>
 
+<ParaglideJS {i18n}>
 <div class="{$page.route.id?.replaceAll('/', '-').replaceAll('[', '').replaceAll(']', '')} {$page.url.pathname.replaceAll('/', '-')} {$page.data.page?.fields.dark ? 'dark' : ''}">
 	<!-- <Dialog /> -->
 
@@ -37,6 +41,7 @@
 		footer={data.navigations['footer']}
 		contact={data.navigations['contact']} />
 </div>
+</ParaglideJS>
 
 <style lang="scss">
 	div {

@@ -1,5 +1,6 @@
 import type { TypePageSkeleton } from '$lib/clients/content_types'
 import { content } from '$lib/clients/contentful'
+import { languageTag } from '$lib/paraglide/runtime'
 import { error } from '@sveltejs/kit'
 
 export const load = async ({ params }) => {
@@ -8,7 +9,7 @@ export const load = async ({ params }) => {
       content_type: 'page', 
       include: 3, 
       "fields.id": params.id, 
-      locale: 'fr-CA' 
+      locale: { en: 'en-CA' }[languageTag()] || 'fr-CA' 
     }),
   ])
 

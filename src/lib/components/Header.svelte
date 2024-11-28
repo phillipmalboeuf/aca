@@ -5,6 +5,7 @@
 
   import Link from './Link.svelte'
   import Logo from './Logo.svelte'
+  import Locales from './Locales.svelte'
   // import NoScroll from './NoScroll.svelte'
 
   let { navigation }: {
@@ -41,8 +42,7 @@
 
     <aside class="flex flex--gapped">
       <span>Anne Carrier Architectures</span>
-      <a href="/en">English</a>
-      <a href="/fr">Français</a>
+      <Locales />
     </aside>
 
     <button class="button--none" onclick={() => visible = false} aria-label="Fermer le menu">

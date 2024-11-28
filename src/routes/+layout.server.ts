@@ -1,12 +1,13 @@
 
 import type { TypeNavigationSkeleton } from '$lib/clients/content_types'
 import { content } from '$lib/clients/contentful'
+import { languageTag } from '$lib/paraglide/runtime'
 import type { Entry, Tag } from 'contentful'
 
 export const load = async ({ request, cookies }) => {
 
   const [navigations, tags] = await Promise.all([
-    content.getEntries<TypeNavigationSkeleton>({ content_type: 'navigation', select: ['sys.id', 'fields.id', 'fields.links'], include: 2, locale: 'fr-CA' }),
+    content.getEntries<TypeNavigationSkeleton>({ content_type: 'navigation', select: ['sys.id', 'fields.id', 'fields.links'], include: 2, locale: { en: 'en-CA' }[languageTag()] || 'fr-CA' }),
     content.getTags()
   ])
 
