@@ -64,7 +64,7 @@
     {:else}
     <ul class="list--nostyle flex flex--gapped">
       {#each item.fields.items as listItem, index}
-      <li class="col col--4of12">
+      <li class="col col--4of12" class:col--mobile--6of12={isTypeProjet(listItem)} class:col--mobile--12of12={!isTypeProjet(listItem)}>
       {#if isTypeText(listItem)}
         <Text item={listItem} first={index === 0} />
       {:else if isTypeArticle(listItem)}
@@ -77,73 +77,6 @@
     </ul>
     {/if}
   {/if}
-  <!-- {#if item.fields.titre}
-    <hr />
-    <div class="flex flex--gapped">
-      <h4 class:h1={item.fields.type === 'Colonnes'} class="col col--6of12">{@html item.fields.titre.replaceAll('\\n', '<br />')}</h4>
-      {#if item.fields.liens && item.fields.liens.length > 0}
-        <nav class="col col--6of12 flex flex--gapped flex--end">
-          {#each item.fields.liens as link}
-            <Link className="button button--grey" link={link} />
-          {/each}
-          {#if item.fields.type === 'Slider'}
-            <button class="embla__prev button--none" onclick={() => embla?.scrollPrev()} aria-label="Précédent"><svg width="32" height="33" viewBox="0 0 32 33"><circle cx="16" cy="16.7502" r="16" fill="#1C4526"/><path d="M17.9453 11.0988L12.4813 16.836L17.9453 22.5733" stroke="white" stroke-width="1.41198"/></svg></button>
-            <button class="embla__next button--none" onclick={() => embla?.scrollNext()} aria-label="Suivant"><svg width="32" height="33" viewBox="0 0 32 33"><circle cx="16" cy="16.7502" r="16" transform="rotate(-180 16 16.7502)" fill="#1C4526"/><path d="M14.0547 22.4016L19.5187 16.6643L14.0547 10.9271" stroke="white" stroke-width="1.41198"/></svg></button>
-          {/if}
-        </nav>
-      {/if}
-    </div>
-  {/if}
-
-  
-    {:else}
-    <ul class="list--nostyle flex flex--gapped" class:flex--thick_gapped={item.fields.type === 'Colonnes'}>
-      {#each item.fields.items as listItem, index}
-        {#if item.fields.type === 'Pilules' || item.fields.type === 'Italics' || item.fields.type === 'Accordeon'}
-          <li>
-            <details class={item.fields.type} name={item.sys.id} open={item.fields.type !== 'Accordeon' &&index === 0}>
-              <summary class="{isTypeText(listItem) ? listItem.fields.couleur : ''} h3"
-               class:h4={item.fields.type === 'Accordeon'}>
-                {listItem.fields.titre}
-                {#if item.fields.type === 'Accordeon'}
-                  <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <line x1="13.25" y1="0.525635" x2="13.25" y2="25.5256" stroke="currentColor" stroke-width="1.5"/>
-                  <line x1="25" y1="13.7756" x2="-6.55671e-08" y2="13.7756" stroke="currentColor" stroke-width="1.5"/>
-                  </svg>
-                {/if}
-              </summary>
-              <article>
-                {#if isTypeText(listItem)}
-                  <Text item={listItem} first={index === 0} />
-                {:else if isTypeArticle(listItem)}
-                  <Article article={listItem} />
-                {:else if isTypeQuestion(listItem)}
-                  <Question item={listItem} id={item.sys.id} />
-                {/if}
-              </article>
-
-              {#if item.fields.type === 'Pilules'}
-                <Ecole type="two" />
-              {/if}
-            </details>
-          </li>
-        {:else}
-          {#if isTypeText(listItem)}
-          <li class="col" class:col--6of12={(item.fields.type === 'Colonnes' && item.fields.items.length < 3) || item.fields.type === 'Timeline'} class:col--4of12={item.fields.type === 'Colonnes' && item.fields.items.length === 3} class:col--3of12={item.fields.type === 'Colonnes' && item.fields.items.length > 3}>
-            <Text item={listItem} first={index === 0} />
-          </li>
-          {:else if isTypeArticle(listItem)}
-            <Article article={listItem} />
-          {:else if isTypeQuestion(listItem)}
-          <li class="col col--3of12 question">
-            <Question item={listItem} id={item.sys.id} />
-          </li>
-          {/if}
-        {/if}
-      {/each}
-    </ul>
-    {/if}
-  {/if} -->
 </section>
 
 <style lang="scss">
@@ -167,11 +100,48 @@
         &:nth-child(3n) {
           border-right-color: transparent;
         }
+
+        @media (max-width: $mobile) {
+          &.col--mobile--6of12 {
+            padding-bottom: $s1;
+
+            &:not(:nth-child(3n)) {
+              padding-right: 0;
+            }
+
+            &:nth-child(3n) {
+              border-right-color: $muted;
+            }
+
+            &:not(:nth-child(2n)) {
+              padding-right: $s-1;
+            }
+
+            &:nth-child(2n) {
+              border-right-color: transparent;
+            }
+          }
+
+          &.col--mobile--12of12 {
+            padding-right: 0;
+            border-right-color: transparent;
+          }
+        }
       }
 
       &#projets-accueil ul > .col {
         &:nth-child(3n - 1) {
           padding-top: 25vw;
+        }
+
+        @media (max-width: $mobile) {
+          &:nth-child(3n - 1) {
+            padding-top: 0;
+          }
+
+          &:nth-child(2n - 1) {
+            padding-top: 25vh;
+          }
         }
       }
     }
@@ -192,7 +162,11 @@
       min-width: 0;
       max-width: none;
       width: var(--slide-width);
-      padding-left: $s0;
+      padding-right: $s0;
+
+      @media (max-width: $mobile) {
+        --slide-width: 50% !important;
+      }
     }
   }
 </style>

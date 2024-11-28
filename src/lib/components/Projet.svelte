@@ -35,7 +35,7 @@
         <h4>{item.fields.region}</h4>
       {/if}
     {:else}
-      <aside class="col col--9of12 flex flex--column">
+      <aside class="col col--9of12 col--mobile--12of12 flex flex--column">
         {#if item.fields.titre}
           <h4>{item.fields.titre}</h4>
         {/if}
@@ -64,6 +64,12 @@
     figure {
       margin-bottom: $s-1;
     }
+
+    date {
+      @media (max-width: $mobile) {
+        display: none;
+      }
+    }
   }
 
   .hero {
@@ -71,6 +77,14 @@
     text-align: left;
     position: relative;
     overflow: hidden;
+
+    &.first {
+      margin-top: calc($s0 * -3.15);
+
+      @media (max-width: $mobile) {
+        margin-top: calc($s1 * -2.666);
+      }
+    }
     
     > div {
       align-items: flex-start;

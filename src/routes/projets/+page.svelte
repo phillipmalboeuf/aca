@@ -39,7 +39,7 @@
 
   <ol class="list--nostyle flex">
     {#each [...data.projets.items, ...data.projets.items, ...data.projets.items, ...data.projets.items] as projet}
-    <li class:col--4of12={spaced} class="col col--1of5" id={projet.fields.id}>
+    <li class:col--4of12={spaced} class="col col--1of5 col--mobile--6of12" id={projet.fields.id}>
       <a href="/projets/{projet.fields.id}">
         <figure>
           {#if projet.fields.thumbnail}
@@ -87,6 +87,16 @@
 
       &:nth-child(5n) {
         border-right-color: transparent;
+      }
+
+      @media (max-width: $mobile) {
+        &:nth-child(5n) {
+          border-right-color: $muted;
+        }
+
+        &:nth-child(2n) {
+          border-right-color: transparent;
+        }
       }
     }
 

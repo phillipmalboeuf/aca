@@ -14,13 +14,13 @@
 </script>
 
 <footer class="padded flex flex--gapped">
-  <div class="col col--4of12">
+  <div class="col col--4of12 col--mobile--12of12">
     <a href="/" class="logo">
       <h3>Anne Carrier Architectures</h3>
     </a>
   </div>
   
-  <div class="col col--4of12">
+  <div class="col col--4of12 col--mobile--12of12">
     {#if contact?.fields.links?.length}
       <nav class="flex flex--column flex--gapped">
         {#each contact.fields.links as link}
@@ -38,7 +38,7 @@
     {/if}
   </div>
 
-  <div class="col col--4of12 flex flex--gapped flex--end">
+  <div class="col col--4of12 col--mobile--12of12 flex flex--gapped flex--end">
     <svg width="304" height="351" viewBox="0 0 304 351" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M62.8433 2.85608L0.964844 170.603H15.0477L32.5276 122.614H112.703L130.419 170.603H145.083L82.6452 2.85608H62.8433ZM36.9567 110.488L72.626 11.8863L108.295 110.488H36.9567Z" fill="white"/>
     <path d="M216.763 183.253L154.885 351H168.968L186.447 303.011H266.623L284.339 351H299.003L236.544 183.253H216.742H216.763ZM190.877 290.885L226.546 192.283L262.215 290.885H190.898H190.877Z" fill="white"/>
@@ -46,22 +46,22 @@
     </svg>
   </div>
 
-  <div class="col col--4of12">
+  <div class="col col--4of12 col--mobile--6of12">
     <nav class="flex flex--gapped flex--bottom">
       <small>© Anne Carrier Architectures 2024</small>
     </nav>
   </div>
 
-  <div class="col col--4of12">
+  <div class="col col--4of12 col--mobile--6of12">
     {#if footer?.fields.links?.length}
       <nav class="flex flex--gapped flex--bottom">
         {#each footer.fields.links.slice(0, -1) as link}
-          <small class="col col--5of12"><Link {link} /></small>
+          <small class="col col--5of12 col--mobile--12of12"><Link {link} /></small>
         {/each}
       </nav>
     {/if}
   </div>
-  <div class="col col--4of12">
+  <div class="col col--4of12 col--mobile--12of12">
     {#if footer?.fields.links?.length > 1}
       <nav class="flex flex--gapped flex--bottom">
         <small><Link link={footer.fields.links[footer.fields.links.length - 1]} /></small>
@@ -77,10 +77,20 @@
     background-color: rgba($light, 0.25);
     row-gap: 0;
 
+    @media (max-width: $mobile) {
+      row-gap: $s2;
+    }
+
     .logo {
     }
 
     nav {
+      @media (max-width: $mobile) {
+        flex-direction: column;
+        align-items: flex-start !important;
+        // row-gap: 0;
+      }
+
       em {
         font-style: normal;
         color: rgba($dark, 0.5);
@@ -95,10 +105,12 @@
     }
 
     > .col {
-      border-right: 1px solid $muted;
+      @media (min-width: $mobile) {
+        border-right: 1px solid $muted;
 
-      &:nth-child(3n) {
-        border-right-color: transparent;
+        &:nth-child(3n) {
+          border-right-color: transparent;
+        }
       }
     }
   }

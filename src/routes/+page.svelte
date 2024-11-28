@@ -24,7 +24,7 @@
   {:else if isTypeGallerie(item)}
   <Gallerie {item} />
   {:else if isTypeProjet(item)}
-  <Projet {item} hero />
+  <Projet {item} hero first={i === 0} />
   {:else if isTypeArticle(item)}
   <Article article={item} />
   {/if}

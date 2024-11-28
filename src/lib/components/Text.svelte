@@ -25,7 +25,7 @@
 
 <section class="flex flex--gapped flex--center" class:no-media={!item.fields.media} id={item.fields.id}>
   {#if item.fields.media}
-  <div class="col col--9of12 media">
+  <div class="col col--9of12 col--mobile--12of12 media">
     <figure>
       <Media media={item.fields.media} rounded />
     </figure>
@@ -34,7 +34,7 @@
 
   <div class="col col--12of12 flex flex--gapped">
     {#if item.fields.titre}
-    <div class:col--4of12={!!item.fields.media} class="titre col flex flex--column flex--gapped">
+    <div class:col--4of12={!!item.fields.media} class="titre col col--mobile--12of12 flex flex--column flex--gapped">
       <!-- {#if item.fields.sousTitre}
         <small>{@html item.fields.sousTitre.replaceAll('\\n', '<br />')}</small>
       {/if} -->
@@ -43,7 +43,7 @@
     {/if}
 
     {#if item.fields.corps}
-    <div class:col--8of12={!!item.fields.media} class="flex corps col flex--column flex--gapped">
+    <div class:col--8of12={!!item.fields.media} class="flex corps col col--mobile--12of12 flex--column flex--gapped">
       <Rich body={item.fields.corps} />
 
       {#if item.fields.liens?.length}

@@ -12,20 +12,29 @@
 
 
 <div class="flex flex--gapped">
-  <figure class="col col--4of12">
+  <hr class="col col--12of12" />
+
+  <figure class="col col--4of12 col--mobile--12of12">
     <Media media={article.fields.thumbnail} />
   </figure>
 
-  <article class="flex flex--gapped flex--column padded col col--4of12">
+  <article class="flex flex--gapped flex--column col col--4of12 col--mobile--12of12">
     <date>{date(article.fields.date)}</date>
-    <h5>{article.fields.titre}</h5>
+    <h3>{article.fields.titre}</h3>
   </article>
 
-  <div class="col col--4of12">
+  <div class="col col--4of12 col--mobile--12of12">
     <Rich body={article.fields.corps} />
   </div>
 </div>
 
 
 <style lang="scss">
+  div {
+    padding-bottom: $s2;
+  }
+  hr {
+    margin: $s-2 0;
+    color: rgba($light, 0.25);
+  }
 </style>

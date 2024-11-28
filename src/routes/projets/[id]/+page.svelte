@@ -14,7 +14,7 @@
 
 
 <section class="flex" id={data.item.fields.id}>
-  <div class="col col--4of12 flex flex--column">
+  <div class="col col--4of12 col--mobile--12of12 flex flex--column">
     {#if data.item.fields.titre}
     <h1 class="h2">{data.item.fields.titre}<br>{data.item.fields.region}</h1>
     {/if}
@@ -22,12 +22,12 @@
     <h2>{year(data.item.fields.date)}</h2>
     {/if}
   </div>
-  <div class="col col--4of12">
+  <div class="col col--4of12 col--mobile--12of12">
     {#if data.item.fields.description}
     <Rich body={data.item.fields.description} />
     {/if}
   </div>
-  <div class="col col--4of12">
+  <div class="col col--4of12 col--mobile--12of12">
     {#if data.item.fields.details}
     <Rich body={data.item.fields.details} />
     {/if}
