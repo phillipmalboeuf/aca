@@ -64,6 +64,11 @@
       svg {
         height: calc(50vh - ($s-1 * 2));
         width: auto;
+
+        @media (max-width: $mobile) {
+          width: calc(50vw - ($s-1 * 2));
+          height: auto;
+        }
       }
     }
   }
