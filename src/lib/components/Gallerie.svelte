@@ -65,13 +65,13 @@
       <button class="embla__next button--none" onclick={() => embla?.scrollNext()} aria-label="Suivant"><svg width="32" height="33" viewBox="0 0 32 33"><circle cx="16" cy="16.7502" r="16" transform="rotate(-180 16 16.7502)" fill="white" opacity="0.5"/><path d="M14.0547 22.4016L19.5187 16.6643L14.0547 10.9271" stroke="currentColor" stroke-width="1.41198"/></svg></button>
     </div>
     {:else} -->
-    <ul class="list--nostyle flex flex--gapped descriptions">
+    <ul class="list--nostyle flex flex--gapped flex--spaced">
       {#each item.fields.media as media, index}
-        <li class="media-item col col--3of12" class:description={media.fields.description}>
+        <li class="media-item col" class:description={media.fields.description}>
           <figure>
             <Media {media} />
             <figcaption class="padded beige-pale flex flex--column flex--gapped">
-              {#if media.fields.title}<p>{@html media.fields.title.replaceAll('\\n', '<br />')}</p>{/if}
+              <!-- {#if media.fields.title}<p>{@html media.fields.title.replaceAll('\\n', '<br />')}</p>{/if} -->
               {#if media.fields.description}<p>{@html media.fields.description.replaceAll('\\n', '<br />')}</p>{/if}
             </figcaption>
           </figure>
@@ -90,59 +90,65 @@
       margin-bottom: $s2;
     }
 
-    .embla {
-      overflow: hidden;
-      margin: 0 calc(-1 * $s1);
-      position: relative;
+    // .embla {
+    //   overflow: hidden;
+    //   margin: 0 calc(-1 * $s1);
+    //   position: relative;
 
-      .embla__container {
-        display: flex;
-      }
+    //   .embla__container {
+    //     display: flex;
+    //   }
 
-      .embla__slide {
-        flex: 0 0 auto;
-        min-width: 0;
-        max-width: none;
-        width: auto;
-        // height: 50lvh;
+    //   .embla__slide {
+    //     flex: 0 0 auto;
+    //     min-width: 0;
+    //     max-width: none;
+    //     width: auto;
+    //     // height: 50lvh;
         
-        padding: 0 calc($s0 / 2);
+    //     padding: 0 calc($s0 / 2);
 
-        figure {
-          aspect-ratio: var(--ar);
-          height: 50lvh;
-        }
+    //     figure {
+    //       aspect-ratio: var(--ar);
+    //       height: 50lvh;
+    //     }
 
-        &.description {
-          figure {
-            height: calc(50lvh - $s2);
-          }
-        }
+    //     &.description {
+    //       figure {
+    //         height: calc(50lvh - $s2);
+    //       }
+    //     }
 
-        :global(img),
-        :global(video),
-        :global(picture) {
-          width: auto;
-          height: 100%;
-        }
+    //     :global(img),
+    //     :global(video),
+    //     :global(picture) {
+    //       width: auto;
+    //       height: 100%;
+    //     }
 
-        &:nth-child(2n) {
-          margin-top: $s5;
-        }
-      }
+    //     &:nth-child(2n) {
+    //       margin-top: $s5;
+    //     }
+    //   }
 
-      > button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+    //   > button {
+    //     position: absolute;
+    //     top: 50%;
+    //     transform: translateY(-50%);
 
-        &.embla__prev {
-          left: calc(1 * $s1);
-        }
+    //     &.embla__prev {
+    //       left: calc(1 * $s1);
+    //     }
 
-        &.embla__next {
-          right: calc(1 * $s1);
-        }
+    //     &.embla__next {
+    //       right: calc(1 * $s1);
+    //     }
+    //   }
+    // }
+
+    ul {
+      @media (min-width: $mobile) {
+        row-gap: $s3;
       }
     }
 
@@ -151,16 +157,35 @@
       :global(img),
       :global(video),
       :global(picture) {
-        width: 100%;
-        height: auto;
+        width: auto;
+        max-width: 33vw;
+        max-height: 75lvh;
+
+        @media (max-width: $mobile) {
+          max-width: 80vw !important;
+        }
+      }
+
+      &:nth-child(3n + 1) {
+        :global(img),
+        :global(video),
+        :global(picture) {
+          max-width: 50vw;
+        }
+      }
+
+      @media (max-width: $mobile) {
+        &:nth-child(3n + 1) {
+          margin-left: auto;
+        }
       }
     }
 
-    .descriptions {
-      li {
-        border-radius: $s-1;
-        overflow: hidden;
-      }
-    }
+    // .descriptions {
+    //   li {
+    //     border-radius: $s-1;
+    //     overflow: hidden;
+    //   }
+    // }
   }
 </style>

@@ -30,7 +30,7 @@
 <div class="{$page.route.id?.replaceAll('/', '-').replaceAll('[', '').replaceAll(']', '')} {$page.url.pathname.replaceAll('/', '-')} {$page.data.page?.fields.dark ? 'dark' : ''}">
 	<!-- <Dialog /> -->
 
-	<Intro />
+	<!-- <Intro /> -->
 	<Header navigation={data.navigations['menu']} />
 
 	<main>

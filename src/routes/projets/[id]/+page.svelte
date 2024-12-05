@@ -3,13 +3,15 @@
   
   import Rich from '$lib/components/Rich.svelte'
   import Media from '$lib/components/Media.svelte'
+  import Contenu from '$lib/components/Contenu.svelte'
+
+  import { year } from '$lib/formatters'
 
   import type { PageData } from './$types'
-  import { year } from '$lib/formatters';
   let { data }: { data: PageData } = $props()
 
-  onMount(() => {
-  })
+  // onMount(() => {
+  // })
 </script>
 
 
@@ -40,13 +42,7 @@
   </figure>
   {/if}
 
-  <ol class="list--nostyle flex flex--column flex--gapped">
-    <!-- {#each data.item.fields.produits as item}
-    <li>
-      <Produit {item} />
-    </li>
-    {/each} -->
-  </ol>
+  <Contenu contenu={data.item.fields.contenu} />
 
   <nav class="col col--12of12">
     <a href="/projets" class="button">Voir tous les projets</a>
