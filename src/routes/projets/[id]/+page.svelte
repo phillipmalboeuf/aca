@@ -25,14 +25,18 @@
     {/if}
   </div>
   <div class="col col--4of12 col--mobile--12of12">
-    {#if data.item.fields.description}
-    <Rich body={data.item.fields.description} />
-    {/if}
+    <div class="flex flex--column flex--gapped">
+      {#if data.item.fields.description}
+      <Rich body={data.item.fields.description} />
+      {/if}
+    </div>
   </div>
   <div class="col col--4of12 col--mobile--12of12">
-    {#if data.item.fields.details}
-    <Rich body={data.item.fields.details} />
-    {/if}
+    <div class="flex flex--column flex--gapped">
+      {#if data.item.fields.details}
+      <Rich body={data.item.fields.details} />
+      {/if}
+    </div>
   </div>
 
 
