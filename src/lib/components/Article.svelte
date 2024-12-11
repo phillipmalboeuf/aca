@@ -24,7 +24,9 @@
   </article>
 
   <div class="col col--4of12 col--mobile--12of12">
-    <Rich body={article.fields.corps} />
+    <div class="flex flex--column flex--gapped">
+      <Rich body={article.fields.corps} />
+    </div>
   </div>
 </div>
 

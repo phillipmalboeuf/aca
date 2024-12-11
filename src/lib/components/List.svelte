@@ -40,7 +40,9 @@
   {#if item.fields.corps}
   <div class="col col--4of12 col--mobile--12of12"></div>
   <div class="col col--4of12 col--mobile--12of12">
-    <Rich body={item.fields.corps} />
+    <div class="flex flex--column flex--gapped">
+      <Rich body={item.fields.corps} />
+    </div>
   </div>
   {/if}
 
