@@ -35,6 +35,10 @@ body {
 		background-color: $grey;
 	}
 
+	&:has(.-projets) {
+		background-color: $taupe;
+	}
+
 	@media (max-width: $mobile) {
     // font-size: $s-1;
   }

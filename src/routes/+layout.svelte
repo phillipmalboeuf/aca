@@ -48,5 +48,6 @@
 	}
 
 	main {
+		padding-bottom: $s5;
 	}
 </style>

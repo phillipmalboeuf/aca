@@ -98,3 +98,12 @@
 {#each body.content as node}
 {@render n(node)}
 {/each}
+
+<style lang="scss">
+  table {
+    :global(em) {
+      font-style: normal;
+      color: $grey;
+    }
+  }
+</style>

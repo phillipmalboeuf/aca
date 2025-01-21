@@ -12,7 +12,7 @@
 
     setTimeout(() => {
       hide = true
-    }, speed * 3)
+    }, speed * 4)
   })
 </script>
 
