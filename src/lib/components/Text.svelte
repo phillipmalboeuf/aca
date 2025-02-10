@@ -34,7 +34,7 @@
 
   <div class="col col--12of12 flex flex--gapped">
     {#if item.fields.titre}
-    <div class:col--4of12={!!item.fields.media} class="titre col col--mobile--12of12 flex flex--column flex--gapped">
+    <div class:col--4of12={!!item.fields.media} class:hideonmobile={item.fields.titre === 'Anne Carrier Architectes'} class="titre col col--mobile--12of12 flex flex--column flex--gapped">
       <!-- {#if item.fields.sousTitre}
         <small>{@html item.fields.sousTitre.replaceAll('\\n', '<br />')}</small>
       {/if} -->
@@ -67,6 +67,12 @@
     //   align-items: center;
     //   margin: 0 auto;
     // }
+
+    .hideonmobile {
+      @media (max-width: $mobile) {
+        display: none;
+      }
+    }
 
     &.no-media {
       display: inline-flex;

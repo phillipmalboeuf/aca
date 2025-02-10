@@ -4,7 +4,7 @@
   import { page } from '$app/stores'
 
   import Link from './Link.svelte'
-  import Logo from './Logo.svelte'
+  // import Logo from './Logo.svelte'
 
   let { contact, footer }: {
     navigation: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
@@ -39,7 +39,7 @@
   </div>
 
   <div class="col col--4of12 col--mobile--12of12 flex flex--gapped flex--end">
-    <svg width="304" height="351" viewBox="0 0 304 351" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 304 351">
     <path d="M62.8433 2.85608L0.964844 170.603H15.0477L32.5276 122.614H112.703L130.419 170.603H145.083L82.6452 2.85608H62.8433ZM36.9567 110.488L72.626 11.8863L108.295 110.488H36.9567Z" fill="white"/>
     <path d="M216.763 183.253L154.885 351H168.968L186.447 303.011H266.623L284.339 351H299.003L236.544 183.253H216.742H216.763ZM190.877 290.885L226.546 192.283L262.215 290.885H190.898H190.877Z" fill="white"/>
     <path d="M226.846 161.877C189.65 161.877 163.484 132.336 163.484 86.7115C163.484 41.0875 189.65 11.3738 226.846 11.3738C256.947 11.3738 282.468 29.0042 288.101 60.6099H303.797C297.432 23.0485 264.773 0 226.846 0C180.835 0 147.811 34.9383 147.811 86.733C147.811 138.528 180.835 173.466 226.846 173.466C264.773 173.466 296.938 150.181 303.797 111.695H288.101C282.468 144.483 257.442 161.899 226.846 161.899V161.877Z" fill="white"/>
@@ -82,6 +82,15 @@
     }
 
     .logo {
+    }
+
+    svg {
+      width: 300px;
+      height: auto;
+
+      @media (max-width: $mobile) {
+        width: 100%;
+      }
     }
 
     nav {

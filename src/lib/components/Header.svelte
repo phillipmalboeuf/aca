@@ -153,6 +153,10 @@
         margin-top: auto;
         column-gap: $s2;
 
+        @media (max-width: $mobile) {
+          margin-bottom: auto;
+        }
+
         span {
           flex: 1;
         }
