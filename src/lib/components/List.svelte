@@ -195,7 +195,7 @@
       border-right: 1px solid $muted;
 
       @media (max-width: $mobile) {
-        --slide-width: 50% !important;
+        --slide-width: 100% !important;
       }
     }
   }

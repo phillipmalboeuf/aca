@@ -56,6 +56,7 @@
     position: sticky;
     top: 0;
     z-index: 88;
+    padding-bottom: $s3;
 
     .logo {
       :global(path:not(.initial)) {

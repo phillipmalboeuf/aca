@@ -162,7 +162,7 @@
         max-height: 75lvh;
 
         @media (max-width: $mobile) {
-          max-width: 80vw !important;
+          max-width: 100% !important;
         }
       }
 

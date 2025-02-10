@@ -73,6 +73,10 @@
 
       h1 + h2 {
         margin-top: auto;
+
+        @media (max-width: $mobile) {
+          margin-top: $s1;
+        }
       }
     }
 

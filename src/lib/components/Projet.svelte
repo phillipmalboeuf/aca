@@ -79,10 +79,10 @@
     overflow: hidden;
 
     &.first {
-      margin-top: calc($s0 * -3.15);
+      margin-top: calc(($s0 * -2.5) - $s3);
 
       @media (max-width: $mobile) {
-        margin-top: calc($s1 * -2.666);
+        margin-top: calc($s1 * -2.666 - $s3);
       }
     }
     

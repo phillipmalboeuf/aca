@@ -28,7 +28,7 @@
   <nav class="flex flex--middle flex--gapped">
     <h6>Catégorie</h6>
     <details {open} style:--length={data.categories.items.length}>
-      <summary>{data.filter ? data.categories.items.find(c => c.fields.id === data.filter).fields.titre : 'Tous'}</summary>
+      <summary>{data.filter ? data.categories.items.find(c => c.fields.id === data.filter).fields.titre : 'Tous'} <svg width="14" height="7" viewBox="0 0 14 7"><path d="M1 1L7 6L13 1" stroke="currentColor"/></svg></summary>
       <ul class="list--nostyle">
         {#if data.filter}
         <li>
@@ -172,11 +172,17 @@
     nav {
       padding: $s-1;
 
+      @media (max-width: $mobile) {
+        justify-content: space-between;
+        margin-bottom: $s0;
+      }
+
       .formats {
         margin-left: auto;
 
         @media (max-width: $mobile) {
           order: -1;
+          margin-bottom: $s1;
         }
 
         a {
@@ -202,6 +208,13 @@
         summary {
           cursor: pointer;
           opacity: 0.5;
+          display: flex;
+          align-items: center;
+
+          svg {
+            margin-left: auto;
+            transition: transform 333ms;
+          }
         }
 
         &[open] {
@@ -209,6 +222,10 @@
 
           summary {
             margin-bottom: $s-2;
+
+            svg {
+              transform: rotate(-180deg);
+            }
           }
         }
 

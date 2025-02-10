@@ -72,7 +72,7 @@
 
 <style lang="scss">
   footer {
-    padding: $s1 $s0 $s0;
+    padding: $s0 $s0;
     color: $dark;
     background-color: rgba($light, 0.25);
     row-gap: 0;
