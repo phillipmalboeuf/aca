@@ -229,10 +229,10 @@ button,
 		background: $dark;
 	}
 
-	// &.button--grey {
-	// 	color: $black;
-	// 	background: $grey;
-	// }
+	&.button--grey {
+		color: $light;
+		background: $grey;
+	}
 
 	&:hover,
 	&:focus {
@@ -404,12 +404,12 @@ table {
 	}
 
 	tr {
-		&:first-child:last-child {
-			td,
-			th {
-				border-top: none;
-			}
-		}
+		// &:first-child:last-child {
+		// 	td,
+		// 	th {
+		// 		border-top: none;
+		// 	}
+		// }
 	}
 
 	td {
@@ -551,11 +551,11 @@ strong,
   }
 
   &.flex--tight_gapped {
-    --gap: #{$s-1};
+    --gap: #{$s-2};
 
-    @media (max-width: $mobile) {
-      --gap: #{$s-2};
-    }
+    // @media (max-width: $mobile) {
+    //   --gap: #{$s-2};
+    // }
 
 		hr {
 			margin: 0;

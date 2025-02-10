@@ -25,14 +25,14 @@
     {/if}
   </div>
   <div class="col col--4of12 col--mobile--12of12">
-    <div class="flex flex--column flex--gapped">
+    <div class="flex flex--column flex--gapped description">
       {#if data.item.fields.description}
       <Rich body={data.item.fields.description} />
       {/if}
     </div>
   </div>
   <div class="col col--4of12 col--mobile--12of12">
-    <div class="flex flex--column flex--gapped">
+    <div class="flex flex--column flex--gapped details">
       {#if data.item.fields.details}
       <Rich body={data.item.fields.details} />
       {/if}
@@ -65,6 +65,11 @@
 
       padding: 0 $s-1;
       margin-bottom: $s0;
+
+      :global(td),
+      :global(th) {
+        border-top: 1px solid $muted;
+      }
 
       h1 + h2 {
         margin-top: auto;

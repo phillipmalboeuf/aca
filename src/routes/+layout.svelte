@@ -48,6 +48,6 @@
 	}
 
 	main {
-		padding-bottom: $s5;
+		padding-bottom: $s4;
 	}
 </style>

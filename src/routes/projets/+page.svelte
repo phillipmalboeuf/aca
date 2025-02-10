@@ -4,11 +4,15 @@
   import Rich from '$lib/components/Rich.svelte'
   import Media from '$lib/components/Media.svelte'
 
+  import { year } from '$lib/formatters'
+  import { page } from '$app/stores'
+  import { goto } from '$app/navigation'
+
   import type { PageData } from './$types'
-  import { year } from '$lib/formatters';
   let { data, spaced, categories=true }: { data: PageData, spaced: boolean, categories: boolean } = $props()
 
   let open = $state(false)
+  let format = $derived($page.url.searchParams.get('format') || 'images')
 
   onMount(() => {
   })
@@ -34,11 +38,17 @@
         {/each}    
       </ul>
     </details>
+
+    <div class="flex flex--gapped flex--end col col--6of12 col--mobile--12of12 formats">
+      <a href="/projets{data.filter ? `?categorie=${data.filter}` : ''}" class="h3" class:active={format === 'images'}>Images</a>
+      <a href="/projets{data.filter ? `?categorie=${data.filter}&format=liste` : '?format=liste'}" class="h3" class:active={format === 'liste'}>Liste</a>
+    </div>
   </nav>
   {/if}
 
+  {#if format === 'images'}
   <ol class="list--nostyle flex">
-    {#each [...data.projets.items, ...data.projets.items, ...data.projets.items, ...data.projets.items] as projet}
+    {#each [...data.projets.items] as projet}
     <li class:col--4of12={spaced} class="col col--1of5 col--mobile--6of12" id={projet.fields.id}>
       <a href="/projets/{projet.fields.id}">
         <figure>
@@ -59,7 +69,24 @@
       </a>
     </li>
     {/each}
+    {#each Array(data.projets.items.length % 5) as _}
+    <li class="col col--1of5 col--mobile--12of12"></li>
+    {/each}
   </ol>
+  {:else}
+  <table>
+    <tbody>
+      {#each data.projets.items as projet}
+      <tr class="clickable-row" onclick={() => goto(`/projets/${projet.fields.id}`)}>
+        <td>{projet.fields.titre}</td>
+        <td>{projet.fields.region}</td>
+        <td>{projet.fields.catgorie?.fields.titre}</td>
+        <td>{year(projet.fields.date)}</td>
+      </tr>
+      {/each}
+    </tbody>
+  </table>
+  {/if}
 </section>
 
 
@@ -111,13 +138,51 @@
       }
     }
 
+    table {
+      width: 100%;
+      padding: $s-1;
+      
+      td {
+        border-top: 1px solid $muted;
+
+        &:last-child {
+          text-align: right;
+        }
+
+        @media (max-width: $mobile) {
+          &:nth-child(3) {
+            display: none;
+          }
+        }
+      }
+    } 
+
     nav {
       padding: $s-1;
 
+      .formats {
+        margin-left: auto;
+
+        @media (max-width: $mobile) {
+          order: -1;
+        }
+
+        a {
+          opacity: 0.5;
+          transition: opacity 333ms;
+
+          &.active,
+          &:hover,
+          &:focus {
+            opacity: 1;
+          }
+        }
+      }
+
       details {
         min-width: 280px;
-        border-radius: $s-1;
-        padding: $s-2;
+        border-radius: $radius;
+        padding: $s-2 $s-1;
         background: rgba(255, 255, 255, 0.70);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
@@ -128,7 +193,7 @@
         }
 
         &[open] {
-          margin-bottom: calc(($s0 * -1.5 * var(--length)) - (1px * (var(--length))) - $s-2);
+          margin-bottom: calc(($s0 * -1.5 * var(--length)) - (0px * (var(--length))) - $s-2);
 
           summary {
             margin-bottom: $s-2;
@@ -142,6 +207,14 @@
           }
         }
       }
+    }
+  }
+
+  .clickable-row {
+    cursor: pointer;
+    
+    &:hover {
+      background: rgba(0, 0, 0, 0.05);
     }
   }
 </style>

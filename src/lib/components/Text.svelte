@@ -38,7 +38,7 @@
       <!-- {#if item.fields.sousTitre}
         <small>{@html item.fields.sousTitre.replaceAll('\\n', '<br />')}</small>
       {/if} -->
-      <h2>{@html item.fields.titre.replaceAll('\\n', '<br />')}</h2>
+      <h3>{@html item.fields.titre.replaceAll('\\n', '<br />')}</h3>
     </div>
     {/if}
 

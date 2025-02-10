@@ -34,7 +34,20 @@
 
 <section class="list flex flex--gapped {item.fields.type}" id={item.fields.id}>
   {#if item.fields.titre}
-  <h3 class="col col--4of12 col--mobile--12of12">{@html item.fields.titre.replaceAll('\\n', '<br />')}</h3>
+  <h3 class="col col--4of12" class:col--mobile--9of12={item.fields.type === 'Slider'} class:col--mobile--12of12={item.fields.type !== 'Slider'}>{@html item.fields.titre.replaceAll('\\n', '<br />')}</h3>
+  {/if}
+
+  {#if item.fields.type === 'Slider'}
+  <div class="col col--mobile--3of12 buttons">
+    <div class="flex flex--tight_gapped flex--end">
+      <button class="button button--grey" aria-label="Précédent" onclick={() => embla?.scrollPrev()}>
+        <svg width="14" height="14" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M2.68195 6.53073L6.29001 10.1388L5.42881 11L0.347317 5.91851L5.42881 0.837015L6.29001 1.7023L2.68195 5.30628L14 5.30628L14 6.53482L2.68195 6.53482L2.68195 6.53073Z" fill="white"/> </svg>
+      </button>
+      <button class="button button--grey" aria-label="Suivant" onclick={() => embla?.scrollNext()}>
+        <svg width="14" height="14" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M11.3181 4.46926L7.70999 0.861201L8.57119 0L13.6527 5.08149L8.57119 10.163L7.70999 9.2977L11.3181 5.69372H0V4.46518H11.3181V4.46926Z" fill="white"/> </svg>
+      </button>
+    </div>
+  </div>
   {/if}
 
   {#if item.fields.corps}
@@ -76,6 +89,11 @@
       {/if}
       </li>
       {/each}
+    {#if item.fields.type === 'Colonnes' && item.fields.items.length % 3 !== 0}
+      {#each Array(item.fields.items.length % 3) as _}
+      <li class="col col--4of12 col--mobile--12of12"></li>
+      {/each}
+    {/if}
     </ul>
     {/if}
   {/if}
@@ -150,9 +168,17 @@
     
   }
 
+  .buttons {
+    margin-left: auto;
+
+    .button {
+      padding: $s-2;
+    }
+  }
+
   .embla {
     overflow: hidden;
-    // margin: 0 calc(-1 * $s1);
+    margin: 0 calc(-1 * $s-1);
 
     .embla__container {
       display: flex;
@@ -164,7 +190,9 @@
       min-width: 0;
       max-width: none;
       width: var(--slide-width);
-      padding-right: $s0;
+      padding: 0 $s-1;
+
+      border-right: 1px solid $muted;
 
       @media (max-width: $mobile) {
         --slide-width: 50% !important;
