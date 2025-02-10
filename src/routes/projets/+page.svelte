@@ -1,5 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
+  import { fade } from 'svelte/transition'
+  import type { TypeProjet } from '$lib/clients/content_types'
   
   import Rich from '$lib/components/Rich.svelte'
   import Media from '$lib/components/Media.svelte'
@@ -13,6 +15,8 @@
 
   let open = $state(false)
   let format = $derived($page.url.searchParams.get('format') || 'images')
+
+  let active = $state<TypeProjet<"WITHOUT_UNRESOLVABLE_LINKS">>()
 
   onMount(() => {
   })
@@ -77,7 +81,7 @@
   <table>
     <tbody>
       {#each data.projets.items as projet}
-      <tr class="clickable-row" onclick={() => goto(`/projets/${projet.fields.id}`)}>
+      <tr class="clickable-row" onclick={() => goto(`/projets/${projet.fields.id}`)} onmouseenter={() => active = projet} onmouseleave={() => active = undefined}>
         <td>{projet.fields.titre}</td>
         <td>{projet.fields.region}</td>
         <td>{projet.fields.catgorie?.fields.titre}</td>
@@ -86,6 +90,14 @@
       {/each}
     </tbody>
   </table>
+
+  {#if active}
+  <figure transition:fade class="thumbnail">
+    {#if active.fields.thumbnail}
+    <Media media={active.fields.thumbnail} width={400} />
+    {/if}
+  </figure>
+  {/if}
   {/if}
 </section>
 
@@ -207,6 +219,19 @@
           }
         }
       }
+    }
+  }
+
+  .thumbnail {
+    position: fixed;
+    top: $s-1;
+    right: $s-1;
+    width: auto;
+    z-index: 100;
+
+    :global(img) {
+      height: calc($s0 * 10);
+      width: auto;
     }
   }
 
