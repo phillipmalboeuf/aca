@@ -48,8 +48,36 @@
 
   <Contenu contenu={data.item.fields.contenu} />
 
-  <nav class="col col--12of12">
-    <a href="/projets" class="button">Voir tous les projets</a>
+  <nav class="col col--12of12 flex flex--gapped" class:flex--center={!data.item.fields.similaires?.length}>
+    {#if data.item.fields.similaires?.length}
+    <h3>Projets similaires</h3>
+    {/if}
+    <a href="/projets" class="button button--grey">Voir tous les projets</a>
+    {#if data.item.fields.similaires?.length}
+    <ol class="list--nostyle flex">
+      {#each [...data.item.fields.similaires] as projet}
+      <li class="col col--1of5 col--mobile--6of12" id={projet.fields.id}>
+        <a href="/projets/{projet.fields.id}">
+          <figure>
+            {#if projet.fields.thumbnail}
+            <Media media={projet.fields.thumbnail} />
+            {/if}
+
+            <figcaption class="flex flex--gapped">
+              <h6>
+                {projet.fields.titre}<br>
+                {projet.fields.region}
+              </h6>
+            </figcaption>
+          </figure>
+        </a>
+      </li>
+      {/each}
+      {#each Array(data.item.fields.similaires.length % 5) as _}
+      <li class="col col--1of5 col--mobile--12of12"></li>
+      {/each}
+    </ol>
+    {/if}
   </nav>
 </section>
 
@@ -83,6 +111,42 @@
     nav {
       padding: 0 $s-1;
       margin-top: $s3;
+
+      h3 + .button {
+        margin-left: auto;
+      }
+
+      ol {
+        margin: $s-1 calc(-1 * $s-1) 0;
+        align-items: stretch;
+
+        li {
+          padding: 0 $s-1;
+          border-right: 1px solid $muted;
+
+          figcaption {
+            margin-top: $s-1;
+            margin-bottom: $s3;
+          }
+        }
+
+        li {
+
+          &:nth-child(5n) {
+            border-right-color: transparent;
+          }
+
+          @media (max-width: $mobile) {
+            &:nth-child(5n) {
+              border-right-color: $muted;
+            }
+
+            &:nth-child(2n) {
+              border-right-color: transparent;
+            }
+          }
+        }
+      }
     }
   }
 </style>
