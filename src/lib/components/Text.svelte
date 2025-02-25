@@ -105,6 +105,16 @@
       margin: auto 0;
       background-color: transparent;
     }
+
+    .corps {
+      :global(h2 + table td),
+      :global(h3 + table td),
+      :global(h4 + table td),
+      :global(h5 + table td),
+      :global(h6 + table td) {
+        padding: 0;
+      }
+    }
   }
 
   // :global(section:has(> .no-media)) {
