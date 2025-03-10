@@ -7,7 +7,7 @@ export const load = async ({ params }) => {
   const [items] = await Promise.all([
     content.getEntries<TypePageSkeleton>({ 
       content_type: 'page', 
-      include: 3, 
+      include: 4, 
       "fields.id": params.id, 
       locale: { en: 'en-CA' }[languageTag()] || 'fr-CA' 
     }),

@@ -42,9 +42,11 @@
     </div>
     {/if}
 
-    {#if item.fields.corps}
+    {#if item.fields.corps || item.fields.liens?.length}
     <div class:col--8of12={!!item.fields.media} class="flex corps col col--mobile--12of12 flex--column flex--gapped">
-      <Rich body={item.fields.corps} />
+      {#if item.fields.corps}
+        <Rich body={item.fields.corps} />
+      {/if}
 
       {#if item.fields.liens?.length}
       <ul class="list--nostyle">
