@@ -67,10 +67,10 @@
     {:else} -->
     <ul class="list--nostyle flex flex--gapped flex--spaced">
       {#each item.fields.media as media, index}
-        <li class="media-item col" class:description={media.fields.description}>
+        <li class="media-item col col--mobile--12of12" class:col--4of16={media.fields.file.details.image.width <= media.fields.file.details.image.height} class:col--7of16={media.fields.file.details.image.width > media.fields.file.details.image.height} class:description={media.fields.description}>
           <figure>
             <Media {media} />
-            <figcaption class="padded beige-pale flex flex--column flex--gapped">
+            <figcaption class="flex flex--column flex--gapped">
               <!-- {#if media.fields.title}<p>{@html media.fields.title.replaceAll('\\n', '<br />')}</p>{/if} -->
               {#if media.fields.description}<p>{@html media.fields.description.replaceAll('\\n', '<br />')}</p>{/if}
             </figcaption>
@@ -153,32 +153,37 @@
     }
 
     .media-item {
+
+      figcaption {
+        margin-top: $s-2;
+      }
+
       // flex: 1;
-      :global(img),
-      :global(video),
-      :global(picture) {
-        width: auto;
-        max-width: 33vw;
-        max-height: 75lvh;
+      // :global(img),
+      // :global(video),
+      // :global(picture) {
+      //   width: auto;
+      //   max-width: 33vw;
+      //   max-height: 75lvh;
 
-        @media (max-width: $mobile) {
-          max-width: 100% !important;
-        }
-      }
+      //   @media (max-width: $mobile) {
+      //     max-width: 100% !important;
+      //   }
+      // }
 
-      &:nth-child(3n + 1) {
-        :global(img),
-        :global(video),
-        :global(picture) {
-          max-width: 50vw;
-        }
-      }
+      // &:nth-child(3n + 1) {
+      //   :global(img),
+      //   :global(video),
+      //   :global(picture) {
+      //     max-width: 50vw;
+      //   }
+      // }
 
-      @media (max-width: $mobile) {
-        &:nth-child(3n + 1) {
-          margin-left: auto;
-        }
-      }
+      // @media (max-width: $mobile) {
+      //   &:nth-child(3n + 1) {
+      //     margin-left: auto;
+      //   }
+      // }
     }
 
     // .descriptions {

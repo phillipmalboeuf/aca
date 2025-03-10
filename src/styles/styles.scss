@@ -587,6 +587,14 @@ strong,
        }
     }
 
+		@for $i from 1 through 16 { 
+      &.col--#{$i}of#{16} {
+        $width:  math.div(100%, 16) * $i;
+        $adjust: calc(var(--gap) / #{math.div(16, $i)});
+        width: calc(#{$width} - var(--gap) + #{$adjust});
+       }
+    }
+
     @for $i from 1 through $number_of_columns { 
       &.col--#{$i}of#{$number_of_columns} {
         $width: math.div(100%, $number_of_columns) * $i;
