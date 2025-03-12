@@ -67,7 +67,7 @@
     {:else} -->
     <ul class="list--nostyle flex flex--gapped flex--spaced">
       {#each item.fields.media as media, index}
-        <li class="media-item col col--mobile--12of12" class:col--4of16={media.fields.file.details.image.width <= media.fields.file.details.image.height} class:col--7of16={media.fields.file.details.image.width > media.fields.file.details.image.height} class:description={media.fields.description}>
+        <li class="media-item col col--mobile--12of12" class:col--4of16={media.fields.file.details.image.width <= media.fields.file.details.image.height} class:col--7of16={media.fields.file.details.image.width > media.fields.file.details.image.height} class:col--14of16={media.fields.file.details.image.width > media.fields.file.details.image.height && !((index + 1) % 3)} class:description={media.fields.description}>
           <figure>
             <Media {media} />
             <figcaption class="flex flex--column flex--gapped">
