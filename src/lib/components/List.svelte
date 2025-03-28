@@ -34,7 +34,7 @@
 
 <section class="list flex flex--gapped {item.fields.type}" id={item.fields.id}>
   {#if item.fields.titre}
-  <h3 class="col col--4of12" class:hideonmobile={item.fields.titre === 'Anne Carrier Architectures'} class:col--mobile--9of12={item.fields.type === 'Slider'} class:col--mobile--12of12={item.fields.type !== 'Slider'}>{@html item.fields.titre.replaceAll('\\n', '<br />')}</h3>
+  <h3 class="col col--4of12" class:hideonmobile={item.fields.titre === 'Anne Carrier Architectes'} class:col--mobile--9of12={item.fields.type === 'Slider'} class:col--mobile--12of12={item.fields.type !== 'Slider'}>{@html item.fields.titre.replaceAll('\\n', '<br />')}</h3>
   {/if}
 
   {#if item.fields.type === 'Slider'}

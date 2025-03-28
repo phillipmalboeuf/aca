@@ -16,7 +16,7 @@
 <footer class="padded flex flex--gapped">
   <div class="col col--4of12 col--mobile--12of12">
     <a href="/" class="logo">
-      <h3>Anne Carrier Architectures</h3>
+      <h3>Anne Carrier Architectes</h3>
     </a>
   </div>
   
@@ -48,7 +48,7 @@
 
   <div class="col col--4of12 col--mobile--6of12">
     <nav class="flex flex--gapped flex--bottom">
-      <small>© Anne Carrier Architectures 2024</small>
+      <small>© Anne Carrier Architectes 2024</small>
     </nav>
   </div>
 

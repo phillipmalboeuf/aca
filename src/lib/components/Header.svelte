@@ -41,7 +41,7 @@
     {/each}
 
     <aside class="flex flex--gapped">
-      <span>Anne Carrier Architectures</span>
+      <span>Anne Carrier Architectes</span>
       <Locales />
     </aside>
 
