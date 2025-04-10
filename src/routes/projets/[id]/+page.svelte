@@ -10,8 +10,23 @@
   import type { PageData } from './$types'
   let { data }: { data: PageData } = $props()
 
-  // onMount(() => {
-  // })
+  let description_wrapper: HTMLDivElement
+  let details_wrapper: HTMLDivElement
+  let description: HTMLDivElement
+  let details: HTMLDivElement
+
+  let overflowing = $state(false)
+  let show = $state(false)
+  let height = $state(0)
+
+  onMount(() => {
+    console.log(description.clientHeight, details.clientHeight)
+    if (description.clientHeight > details.clientHeight) {
+      overflowing = true
+      description_wrapper.style.height = `${details.clientHeight}px`
+      height = description.clientHeight
+    }
+  })
 </script>
 
 
@@ -24,15 +39,21 @@
     <h2>{year(data.item.fields.date)}</h2>
     {/if}
   </div>
-  <div class="col col--4of12 col--mobile--12of12">
-    <div class="flex flex--column flex--gapped description">
+  <div class="col col--4of12 col--mobile--12of12 description_wrapper" class:overflowing class:show style:--height={height} bind:this={description_wrapper}>
+    <div class="flex flex--column flex--gapped description" bind:this={description}>
       {#if data.item.fields.description}
       <Rich body={data.item.fields.description} />
       {/if}
     </div>
+
+    {#if overflowing}
+    <div class="overflowing_indicator">
+      <button onclick={() => show = !show}>Lire {#if show}moins{:else}plus{/if}</button>
+    </div>
+    {/if}
   </div>
-  <div class="col col--4of12 col--mobile--12of12">
-    <div class="flex flex--column flex--gapped details">
+  <div class="col col--4of12 col--mobile--12of12 details_wrapper" bind:this={details_wrapper}>
+    <div class="flex flex--column flex--gapped details" bind:this={details}>
       {#if data.item.fields.details}
       <Rich body={data.item.fields.details} />
       {/if}
@@ -89,10 +110,22 @@
     padding: $s3 0;
 
     > div {
-      border-right: 1px solid $muted;
 
       padding: 0 $s-1;
       margin-bottom: $s0;
+
+      @media (min-width: $mobile) {
+        border-right: 1px solid $muted;
+
+        &.description_wrapper {
+          border-right: none;
+        }
+
+        &.details_wrapper {
+          border-left: 1px solid $muted;
+          border-right: none;
+        }
+      }
 
       :global(td),
       :global(th) {
@@ -104,6 +137,39 @@
 
         @media (max-width: $mobile) {
           margin-top: $s1;
+        }
+      }
+    }
+
+    .description_wrapper.overflowing {
+      position: relative;
+      height: 0px;
+      overflow: hidden;
+      transition: height 0.666s;
+
+      .overflowing_indicator {
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        transition: background 0.666s;
+        background: linear-gradient(to bottom, rgba($beige, 0), rgba($beige, 1) 75%);
+        display: flex;
+        align-items: flex-end;
+
+        pointer-events: none;
+
+        button {
+          pointer-events: auto;
+        }
+      }
+
+      &.show {
+        height: calc((var(--height) * 1px) + $s3) !important;
+        
+        .overflowing_indicator {
+          background: linear-gradient(to bottom, rgba($beige, 0), rgba($beige, 0) 75%);
         }
       }
     }
