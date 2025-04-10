@@ -31,19 +31,11 @@
 </script>
 
 <section class="gallerie" id={item.fields.id}>
-  {#if item.fields.titre}
-    <hr />
+  <!-- {#if item.fields.titre}
     <div class="flex flex--gapped">
       <h4 class="col col--6of12">{@html item.fields.titre.replaceAll('\\n', '<br />')}</h4>
-      <!-- {#if item.fields.liens && item.fields.liens.length > 0}
-        <nav class="col col--6of12 flex flex--gapped flex--end">
-          {#each item.fields.liens as link}
-            <Link className="button button--grey" link={link} />
-          {/each}
-        </nav>
-      {/if} -->
     </div>
-  {/if}
+  {/if} -->
 
   {#if item.fields.media && item.fields.media.length > 0}
     <!-- {#if item.fields.type === 'Slider'}
