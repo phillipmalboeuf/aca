@@ -27,7 +27,7 @@
   {#if item.fields.media}
   <div class="col col--9of12 col--mobile--12of12 media">
     <figure>
-      <Media media={item.fields.media} rounded />
+      <Media media={item.fields.media} />
     </figure>
   </div>
   {/if}
