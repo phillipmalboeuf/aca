@@ -2,9 +2,6 @@
 	"name": "aca",
 	"version": "0.0.1",
 	"private": true,
-	"engines": {
-		"node": "22"
-	},
 	"scripts": {
 		"dev": "vite dev --open",
 		"build": "npx @inlang/paraglide-js compile --project ./project.inlang --outdir ./src/lib/paraglide && vite build",
