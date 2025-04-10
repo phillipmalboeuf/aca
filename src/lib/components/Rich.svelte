@@ -96,7 +96,9 @@
 {/snippet}
 
 {#each body.content as node}
+{#if node?.nodeType}
 {@render n(node)}
+{/if}
 {/each}
 
 <style lang="scss">

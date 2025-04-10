@@ -20,7 +20,6 @@
   let height = $state(0)
 
   onMount(() => {
-    console.log(description.clientHeight, details.clientHeight)
     if (description.clientHeight > details.clientHeight) {
       overflowing = true
       description_wrapper.style.height = `${details.clientHeight}px`
