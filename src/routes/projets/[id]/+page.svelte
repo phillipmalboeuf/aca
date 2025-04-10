@@ -35,9 +35,9 @@
     {#if data.item.fields.titre}
     <h1 class="h2">{data.item.fields.titre}<br>{data.item.fields.region}</h1>
     {/if}
-    {#if data.item.fields.date}
+    <!-- {#if data.item.fields.date}
     <h2>{year(data.item.fields.date)}</h2>
-    {/if}
+    {/if} -->
   </div>
   <div class="col col--4of12 col--mobile--12of12 description_wrapper" class:overflowing class:show style:--height={height} bind:this={description_wrapper}>
     <div class="flex flex--column flex--gapped description" bind:this={description}>
