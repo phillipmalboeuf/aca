@@ -106,6 +106,7 @@ export interface TypeProjetFields {
     description?: EntryFieldTypes.RichText;
     details?: EntryFieldTypes.RichText;
     thumbnail?: EntryFieldTypes.AssetLink;
+    cover?: EntryFieldTypes.AssetLink;
     contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeGallerieSkeleton | TypeListSkeleton | TypeTextSkeleton>>;
     similaires?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeProjetSkeleton>>;
 }

@@ -79,7 +79,9 @@
       <li class="col col--1of5 col--mobile--6of12" id={projet.fields.id}>
         <a href="/projets/{projet.fields.id}">
           <figure>
-            {#if projet.fields.thumbnail}
+            {#if projet.fields.cover}
+            <Media media={projet.fields.cover} />
+            {:else if projet.fields.thumbnail}
             <Media media={projet.fields.thumbnail} />
             {/if}
 
