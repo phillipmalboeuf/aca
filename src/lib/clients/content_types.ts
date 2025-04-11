@@ -100,6 +100,7 @@ export function isTypePage<Modifiers extends ChainModifiers, Locales extends Loc
 export interface TypeProjetFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
+    archive?: EntryFieldTypes.Boolean;
     region?: EntryFieldTypes.Symbol;
     date: EntryFieldTypes.Date;
     catgorie?: EntryFieldTypes.EntryLink<TypeCategorieSkeleton>;
