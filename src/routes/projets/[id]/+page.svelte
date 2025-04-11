@@ -32,7 +32,7 @@
 <section class="flex" id={data.item.fields.id}>
   <div class="col col--4of12 col--mobile--12of12 flex flex--column">
     {#if data.item.fields.titre}
-    <h1 class="h2">{data.item.fields.titre}<br>{data.item.fields.region}</h1>
+    <h1 class="h2">{data.item.fields.titre}</h1>
     {/if}
     <!-- {#if data.item.fields.date}
     <h2>{year(data.item.fields.date)}</h2>
