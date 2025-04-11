@@ -59,8 +59,11 @@
     </div>
   </div>
 
-
-  {#if data.item.fields.thumbnail}
+  {#if data.item.fields.cover}
+  <figure class="col col--12of12">
+    <Media media={data.item.fields.cover} />
+  </figure>
+  {:else if data.item.fields.thumbnail}
   <figure class="col col--12of12">
     <Media media={data.item.fields.thumbnail} />
   </figure>
@@ -79,9 +82,7 @@
       <li class="col col--1of5 col--mobile--6of12" id={projet.fields.id}>
         <a href="/projets/{projet.fields.id}">
           <figure>
-            {#if projet.fields.cover}
-            <Media media={projet.fields.cover} />
-            {:else if projet.fields.thumbnail}
+            {#if projet.fields.thumbnail}
             <Media media={projet.fields.thumbnail} />
             {/if}
 
