@@ -43,7 +43,7 @@
       </ul>
     </details>
 
-    <div class="flex flex--gapped flex--end col col--6of12 col--mobile--12of12 formats">
+    <div class="flex flex--gapped col col--4of12 col--mobile--12of12 formats">
       <a href="/projets{data.filter ? `?categorie=${data.filter}` : ''}" class="h3" class:active={format === 'images'}>Images</a>
       <a href="/projets{data.filter ? `?categorie=${data.filter}&format=liste` : '?format=liste'}" class="h3" class:active={format === 'liste'}>Liste</a>
     </div>
@@ -174,6 +174,7 @@
     nav {
       position: relative;
       padding: $s-1;
+      margin-bottom: $s1;
 
       @media (max-width: $mobile) {
         justify-content: space-between;
@@ -183,6 +184,11 @@
       .formats {
         --gap: #{$s1};
         margin-left: auto;
+
+        @media (min-width: $mobile) {
+          margin-right: calc($s-1 * 0.5);
+        }
+
 
         @media (max-width: $mobile) {
           order: -1;
