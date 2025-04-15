@@ -455,8 +455,9 @@ video {
 
 strong,
 .strong {
-	font-weight: bold;
+	font-weight: normal;
 	font-family: $heading_font;
+	opacity: 0.5;
 }
 
 
