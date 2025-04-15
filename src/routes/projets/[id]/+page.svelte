@@ -113,6 +113,12 @@
   section {
     padding: $s4 0;
 
+    @media (max-width: $mobile) {
+      h1 {
+        margin-bottom: $s1;
+      }
+    }
+
     > div {
 
       padding: 0 $s-1;
