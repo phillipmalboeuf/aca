@@ -172,6 +172,7 @@
     } 
 
     nav {
+      position: relative;
       padding: $s-1;
 
       @media (max-width: $mobile) {
@@ -180,6 +181,7 @@
       }
 
       .formats {
+        --gap: #{$s1};
         margin-left: auto;
 
         @media (max-width: $mobile) {
@@ -199,13 +201,18 @@
         }
       }
 
+      // &:has(details[open]) {
+        
+      // }
+
       details {
+        position: relative;
         min-width: 280px;
         border-radius: $radius;
         padding: $s-2 $s-1;
         background: rgba(255, 255, 255, 0.70);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        // backdrop-filter: blur(12px);
+        // -webkit-backdrop-filter: blur(12px);
 
         summary {
           cursor: pointer;
@@ -220,10 +227,12 @@
         }
 
         &[open] {
-          margin-bottom: calc(($s0 * -1.5 * var(--length)) - (0px * (var(--length))) - $s-2);
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          // margin-bottom: calc(($s0 * -1.5 * var(--length)) - (0px * (var(--length))) - $s-2);
 
           summary {
-            margin-bottom: $s-2;
+            // margin-bottom: $s-2;
 
             svg {
               transform: rotate(-180deg);
@@ -232,6 +241,18 @@
         }
 
         ul {
+          position: absolute;
+          top: calc($s1 + ($s-2 * 1));
+          left: 0;
+          width: 100%;
+          background: rgba(255, 255, 255, 0.70);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          padding: $s-2 $s-1;
+          border-radius: $radius;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          
           li {
             border-top: 1px solid $muted;
             line-height: 1.5;
