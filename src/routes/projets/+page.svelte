@@ -37,7 +37,7 @@
         {/if}
         {#each data.categories.items.filter(c => c.fields.id !== data.filter) as categorie}
         <li id={categorie.fields.id}>
-          <a href="/projets?categorie={categorie.fields.id}" onclick={() => { open = false }}>{categorie.fields.titre}</a>
+          <a href="/projets?categorie={categorie.fields.id}{format === 'liste' ? '&format=liste' : ''}" onclick={() => { open = false }}>{categorie.fields.titre}</a>
         </li>
         {/each}    
       </ul>
@@ -73,9 +73,11 @@
       </a>
     </li>
     {/each}
+    {#if data.projets.items.length > 5}
     {#each Array(data.projets.items.length % 5) as _}
     <li class="col col--2of12 col--landscape--4of12 col--mobile--12of12"></li>
     {/each}
+    {/if}
   </ol>
   {:else}
   <table>

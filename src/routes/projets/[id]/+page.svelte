@@ -96,9 +96,11 @@
         </a>
       </li>
       {/each}
+      {#if data.item.fields.similaires.length > 5}
       {#each Array(data.item.fields.similaires.length % 5) as _}
       <li class="col col--1of5 col--mobile--12of12"></li>
       {/each}
+      {/if}
     </ol>
     {/if}
   </nav>
