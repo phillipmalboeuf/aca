@@ -15,7 +15,15 @@
 
   let visible = $state(false)
   let scrollY = $state<number>(0)
+  let lastScrollY = 0
+  let scrolled = $derived(scrollY > lastScrollY)
+
+  function onScroll() {
+    lastScrollY = scrollY < 0 ? 0 : scrollY
+  }
 </script>
+
+<svelte:window onscroll={onScroll} bind:scrollY />
 
 <!-- <svelte:window bind:scrollY /> -->
 
@@ -23,7 +31,7 @@
 <NoScroll />
 {/if} -->
 
-<header class="padded flex flex--spaced" class:scrolled={scrollY > 0}>
+<header class="padded flex flex--spaced" class:scrolled>
   <a href="/" class="logo" onclick={() => visible = false}>
     <Logo />
   </a>
@@ -57,6 +65,12 @@
     top: 0;
     z-index: 88;
     padding-bottom: $s3;
+    transition: transform 666ms;
+    transform: translateY(0%);
+
+    &.scrolled {
+      transform: translateY(-100%);
+    }
 
     @media (max-width: $mobile) {
       padding: $s-1;
