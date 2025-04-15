@@ -31,7 +31,7 @@
 <NoScroll />
 {/if} -->
 
-<header class="padded flex flex--spaced" class:scrolled>
+<header class="padded flex flex--spaced" class:scrolled={scrolled && !visible}>
   <a href="/" class="logo" onclick={() => visible = false}>
     <Logo />
   </a>
