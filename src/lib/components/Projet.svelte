@@ -23,7 +23,7 @@
 
   <div class="flex" class:flex--gapped={hero}>
     {#if !hero}
-      <date class="col col--3of12">{year(item.fields.date)}</date>
+      <date class="col">{year(item.fields.date)}</date>
     {/if}
 
     {#if hero}
@@ -66,6 +66,8 @@
     }
 
     date {
+      min-width: 100px;
+      
       @media (max-width: $mobile) {
         display: none;
       }
