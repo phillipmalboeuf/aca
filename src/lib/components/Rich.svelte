@@ -86,7 +86,7 @@
 
 {:else if node.nodeType === 'embedded-asset-block'}
   <figure>
-    <Media media={node.data.target} />
+    <Media media={node.data.target} rounded />
     {#if node.data.target.fields.description}
     <figcaption>{node.data.target.fields.description}</figcaption>
     {/if}

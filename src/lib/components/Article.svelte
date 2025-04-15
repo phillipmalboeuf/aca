@@ -15,7 +15,7 @@
   <hr class="col col--12of12" />
 
   <figure class="col col--4of12 col--mobile--12of12">
-    <Media media={article.fields.thumbnail} />
+    <Media media={article.fields.thumbnail} rounded />
   </figure>
 
   <article class="flex flex--gapped flex--column col col--4of12 col--mobile--12of12">

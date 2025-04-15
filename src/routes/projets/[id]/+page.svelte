@@ -83,7 +83,7 @@
         <a href="/projets/{projet.fields.id}">
           <figure>
             {#if projet.fields.thumbnail}
-            <Media media={projet.fields.thumbnail} />
+            <Media media={projet.fields.thumbnail} rounded />
             {/if}
 
             <figcaption class="flex flex--gapped">

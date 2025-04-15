@@ -17,7 +17,7 @@
 <a href={`/projets/${item.fields.id}`} class="flex flex--bottom" id={item.fields.id} class:hero class:projet={!hero} class:first={first}>
   {#if item.fields.thumbnail}
     <figure class="">
-      <Media media={item.fields.thumbnail} />
+      <Media media={item.fields.thumbnail} rounded />
     </figure>
   {/if}
 

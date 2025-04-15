@@ -63,7 +63,7 @@
         {@const tagged = !!media.metadata.tags.find(tag => tag.sys.id.startsWith('col'))}
         <li class="media-item col col--mobile--12of12 {tags.map(tag => tag.startsWith('col') ? `${tag.replace('col', 'col--')}of16` : `tag--${tag}`).join(' ')}" class:col--4of16={!tagged && media.fields.file.details.image.width <= media.fields.file.details.image.height} class:col--8of16={!tagged && media.fields.file.details.image.width > media.fields.file.details.image.height} class:col--14of16={!tagged && media.fields.file.details.image.width > media.fields.file.details.image.height && !((index + 1) % 3)} class:description={media.fields.description}>
           <figure>
-            <Media {media} />
+            <Media {media} rounded />
             <figcaption class="flex flex--column flex--gapped">
               <!-- {#if media.fields.title}<p>{@html media.fields.title.replaceAll('\\n', '<br />')}</p>{/if} -->
               {#if media.fields.description}<p>{@html media.fields.description.replaceAll('\\n', '<br />')}</p>{/if}

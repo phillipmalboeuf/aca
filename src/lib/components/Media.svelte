@@ -57,7 +57,7 @@
     // border-radius: $radius;
 
     &.rounded {
-      border-radius: $radius;
+      border-radius: 2px;
     }
 
     aspect-ratio: var(--ar);
