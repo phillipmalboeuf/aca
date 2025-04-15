@@ -32,7 +32,7 @@
   ]
 </script>
 
-<section class="list flex flex--gapped {item.fields.type}" id={item.fields.id}>
+<section class="list flex {item.fields.type}" id={item.fields.id}>
   {#if item.fields.titre}
   <h3 class="col col--4of12" class:hideonmobile={item.fields.titre === 'Anne Carrier Architectes'} class:col--mobile--9of12={item.fields.type === 'Slider'} class:col--mobile--12of12={item.fields.type !== 'Slider'}>{@html item.fields.titre.replaceAll('\\n', '<br />')}</h3>
   {/if}
@@ -77,7 +77,7 @@
       </ul>
     </div>
     {:else}
-    <ul class="list--nostyle flex flex--gapped">
+    <ul class="list--nostyle flex">
       {#each item.fields.items as listItem, index}
       <li class="col col--4of12" class:col--mobile--6of12={isTypeProjet(listItem)} class:col--mobile--12of12={!isTypeProjet(listItem)}>
       {#if isTypeText(listItem)}
@@ -104,18 +104,20 @@
     &.Colonnes {
       row-gap: 0;
 
+      width: calc(100% + (2 * $s-1));
+      margin-left: calc(-1 * $s-1);
+      margin-right: calc(-1 * $s-1);
+
       ul {
         row-gap: 0;
+        
       }
       
       > .col,
       ul > .col {
         border-right: 1px solid $muted;
+        padding: 0 $s-1;
         padding-bottom: $s4;
-
-        &:not(:nth-child(3n)) {
-          padding-right: $s-1;
-        }
 
         &:nth-child(3n) {
           border-right-color: transparent;
@@ -125,17 +127,17 @@
           &.col--mobile--6of12 {
             padding-bottom: $s1;
 
-            &:not(:nth-child(3n)) {
-              padding-right: 0;
-            }
+            // &:not(:nth-child(3n)) {
+            //   padding-right: 0;
+            // }
 
             &:nth-child(3n) {
               border-right-color: $muted;
             }
 
-            &:not(:nth-child(2n)) {
-              padding-right: $s-1;
-            }
+            // &:not(:nth-child(2n)) {
+            //   padding-right: $s-1;
+            // }
 
             &:nth-child(2n) {
               border-right-color: transparent;

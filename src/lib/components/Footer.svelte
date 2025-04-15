@@ -72,13 +72,16 @@
 
 <style lang="scss">
   footer {
-    padding: $s0 $s0;
     color: $dark;
     background-color: rgba($light, 0.25);
     row-gap: 0;
 
     :global(.dark) & {
       background-color: rgba($light, 0.35);
+    }
+
+    @media (min-width: $mobile) {
+      padding: $s0 0;
     }
 
     @media (max-width: $mobile) {
@@ -119,6 +122,7 @@
 
     > .col {
       @media (min-width: $mobile) {
+        padding: 0 $s-1;
         border-right: 1px solid $muted;
 
         &:nth-child(3n) {

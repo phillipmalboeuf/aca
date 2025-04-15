@@ -475,9 +475,9 @@ strong,
 .padded {
   padding: $s-1;
 
-	@media (max-width: $mobile) {
-		padding: $s0;
-	}
+	// @media (max-width: $mobile) {
+	// 	padding: $s0;
+	// }
 }
 
 	.padded--tight {

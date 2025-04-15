@@ -73,8 +73,8 @@
       </a>
     </li>
     {/each}
-    {#if data.projets.items.length > 5}
-    {#each Array(data.projets.items.length % 5) as _}
+    {#if data.projets.items.length > 6}
+    {#each Array(data.projets.items.length % 6) as _}
     <li class="col col--2of12 col--landscape--4of12 col--mobile--12of12"></li>
     {/each}
     {/if}
@@ -131,7 +131,7 @@
       }
 
       @media (max-width: $mobile) {
-        &:nth-child(5n) {
+        &:nth-child(6n) {
           border-right-color: $muted;
         }
 

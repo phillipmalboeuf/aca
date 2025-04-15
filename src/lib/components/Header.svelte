@@ -101,6 +101,7 @@
       gap: 0;
       transition: opacity 666ms;
       line-height: 0;
+      padding-left: $s-1;
 
       @media (max-width: $mobile) {
         width: auto !important;
@@ -143,7 +144,7 @@
       top: 0;
       right: 0;
       height: 100lvh;
-      width: calc(33vw + $s1);
+      width: calc(33.333vw);
       color: $dark;
       background-color: fade-out($color: $light, $amount: 0.3);
       -webkit-backdrop-filter: blur(10px);

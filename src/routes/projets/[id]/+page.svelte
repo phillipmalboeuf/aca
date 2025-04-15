@@ -79,7 +79,7 @@
     {#if data.item.fields.similaires?.length}
     <ol class="list--nostyle flex">
       {#each [...data.item.fields.similaires] as projet}
-      <li class="col col--1of5 col--mobile--6of12" id={projet.fields.id}>
+      <li class="col col--2of12 col--landscape--4of12 col--mobile--6of12" id={projet.fields.id}>
         <a href="/projets/{projet.fields.id}">
           <figure>
             {#if projet.fields.thumbnail}
@@ -96,9 +96,9 @@
         </a>
       </li>
       {/each}
-      {#if data.item.fields.similaires.length > 5}
-      {#each Array(data.item.fields.similaires.length % 5) as _}
-      <li class="col col--1of5 col--mobile--12of12"></li>
+      {#if data.item.fields.similaires.length > 6}
+      {#each Array(data.item.fields.similaires.length % 6) as _}
+      <li class="col col--2of12 col--landscape--4of12 col--mobile--12of12"></li>
       {/each}
       {/if}
     </ol>
@@ -136,13 +136,13 @@
         border-top: 1px solid $muted;
       }
 
-      h1 + h2 {
-        margin-top: auto;
+      // h1 + h2 {
+      //   margin-top: auto;
 
-        @media (max-width: $mobile) {
-          margin-top: $s1;
-        }
-      }
+      //   @media (max-width: $mobile) {
+      //     margin-top: $s1;
+      //   }
+      // }
     }
 
     .description_wrapper.overflowing {
@@ -202,12 +202,12 @@
 
         li {
 
-          &:nth-child(5n) {
+          &:nth-child(6n) {
             border-right-color: transparent;
           }
 
           @media (max-width: $mobile) {
-            &:nth-child(5n) {
+            &:nth-child(6n) {
               border-right-color: $muted;
             }
 

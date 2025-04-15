@@ -93,9 +93,9 @@
       padding: $s-1;
       color: $light;
 
-      @media (max-width: $mobile) {
-        padding: $s0;
-      }
+      // @media (max-width: $mobile) {
+      //   padding: $s0;
+      // }
     }
 
     > figure {
