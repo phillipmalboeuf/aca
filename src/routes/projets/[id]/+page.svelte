@@ -47,7 +47,7 @@
 
     {#if overflowing}
     <div class="overflowing_indicator">
-      <button onclick={() => show = !show}>Lire {#if show}moins{:else}plus{/if}</button>
+      <button class="button button--none" onclick={() => show = !show}>Lire {#if show}moins{:else}plus{/if}</button>
     </div>
     {/if}
   </div>
@@ -111,7 +111,7 @@
 
 <style lang="scss">
   section {
-    padding: $s3 0;
+    padding: $s4 0;
 
     > div {
 
@@ -156,9 +156,10 @@
         z-index: 1;
         bottom: 0;
         width: 100%;
-        height: 100%;
+        height: $s1;
         transition: background 0.666s;
-        background: linear-gradient(to bottom, rgba($beige, 0), rgba($beige, 1) 75%);
+        // background: linear-gradient(to bottom, rgba($beige, 0), rgba($beige, 1) 75%);
+        background: rgba($beige, 1);
         display: flex;
         align-items: flex-end;
 
@@ -166,6 +167,7 @@
 
         button {
           pointer-events: auto;
+          opacity: 0.5;
         }
       }
 
@@ -173,7 +175,8 @@
         height: calc((var(--height) * 1px) + $s3) !important;
         
         .overflowing_indicator {
-          background: linear-gradient(to bottom, rgba($beige, 0), rgba($beige, 0) 75%);
+          // background: linear-gradient(to bottom, rgba($beige, 0), rgba($beige, 0) 75%);
+          background: rgba($beige, 0);
         }
       }
     }

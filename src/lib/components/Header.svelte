@@ -63,10 +63,18 @@
   header {
     position: sticky;
     top: 0;
+    height: 100lvh;
     z-index: 88;
     padding-bottom: $s3;
     transition: transform 666ms;
     transform: translateY(0%);
+    overflow-x: hidden;
+    pointer-events: none;
+    align-items: flex-start;
+
+    :global(a), button {
+      pointer-events: auto;
+    }
 
     &.scrolled {
       transform: translateY(-100%);
@@ -100,7 +108,7 @@
       justify-content: flex-start;
       gap: 0;
       transition: opacity 666ms;
-      line-height: 0;
+      line-height: 0.8;
       padding-left: $s-1;
 
       @media (max-width: $mobile) {

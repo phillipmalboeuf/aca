@@ -11,12 +11,15 @@
   let { data }: { data: PageData } = $props()
 </script>
 
-
-<Page {data} />
+<section>
+  <Page {data} />
+</section>
 
 
 <style lang="scss">
   section {
+    padding: $s4 0;
+
     // hr {
     //   width: 100%;
     //   margin: 0;

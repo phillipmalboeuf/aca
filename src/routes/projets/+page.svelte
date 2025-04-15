@@ -108,7 +108,7 @@
 
 <style lang="scss">
   section {
-    padding: $s3 0 $s5;
+    padding: $s4 0;
 
     ol {
       align-items: stretch;

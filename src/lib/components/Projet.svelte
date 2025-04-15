@@ -67,7 +67,7 @@
 
     date {
       min-width: 100px;
-      
+
       @media (max-width: $mobile) {
         display: none;
       }
@@ -81,11 +81,11 @@
     overflow: hidden;
 
     &.first {
-      margin-top: calc(($s0 * -2.5) - $s3);
+      // margin-top: -100lvh;
 
-      @media (max-width: $mobile) {
-        margin-top: calc($s1 * -2.666 - $s3);
-      }
+      // @media (max-width: $mobile) {
+      //   margin-top: calc($s1 * -2.666 - $s3);
+      // }
     }
     
     > div {
