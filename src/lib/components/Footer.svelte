@@ -86,6 +86,7 @@
 
     @media (max-width: $mobile) {
       row-gap: $s2;
+      padding-bottom: $s1;
     }
 
     .logo {

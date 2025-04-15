@@ -35,8 +35,19 @@
   div {
     padding-bottom: $s2;
   }
+
   hr {
     margin: $s-2 0;
     color: rgba($light, 0.25);
+  }
+
+  article {
+    h3 {
+      max-width: 420px;
+
+      @media (max-width: $mobile) {
+        margin-bottom: $s1;
+      }
+    }
   }
 </style>
