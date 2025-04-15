@@ -53,7 +53,7 @@
   {#if format === 'images'}
   <ol class="list--nostyle flex">
     {#each [...data.projets.items] as projet}
-    <li class:col--4of12={spaced} class="col col--1of5 col--mobile--6of12" id={projet.fields.id}>
+    <li class:col--4of12={spaced} class="col col--2of12 col--landscape--4of12 col--mobile--6of12" id={projet.fields.id}>
       <a href="/projets/{projet.fields.id}">
         <figure>
           {#if projet.fields.thumbnail}
@@ -74,7 +74,7 @@
     </li>
     {/each}
     {#each Array(data.projets.items.length % 5) as _}
-    <li class="col col--1of5 col--mobile--12of12"></li>
+    <li class="col col--2of12 col--landscape--4of12 col--mobile--12of12"></li>
     {/each}
   </ol>
   {:else}
@@ -124,7 +124,7 @@
 
     &:not(.spaced) li {
 
-      &:nth-child(5n) {
+      &:nth-child(6n) {
         border-right-color: transparent;
       }
 
