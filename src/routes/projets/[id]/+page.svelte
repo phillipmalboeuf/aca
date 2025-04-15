@@ -187,6 +187,7 @@
       }
 
       ol {
+        width: calc(100% + (2 * $s-1));
         margin: $s-1 calc(-1 * $s-1) 0;
         align-items: stretch;
 
