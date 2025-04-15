@@ -36,7 +36,7 @@
     <Logo />
   </a>
   <button class:visible class="button--none h1 col col--4of12" onclick={() => visible = true}>
-    <svg width="20" height="22" viewBox="0 0 20 22">
+    <svg width="20" height="30" viewBox="0 0 20 22">
       <line y1="11" x2="20" y2="11" stroke="currentColor" stroke-width="2"/>
       <line y1="21" x2="20" y2="21" stroke="currentColor" stroke-width="2"/>
       <line y1="1" x2="20" y2="1" stroke="currentColor" stroke-width="2"/>
