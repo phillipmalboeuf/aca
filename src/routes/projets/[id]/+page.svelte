@@ -60,11 +60,11 @@
   </div>
 
   {#if data.item.fields.cover}
-  <figure class="col col--12of12">
+  <figure class="col col--12of12 cover">
     <Media media={data.item.fields.cover} />
   </figure>
   {:else if data.item.fields.thumbnail}
-  <figure class="col col--12of12">
+  <figure class="col col--12of12 cover">
     <Media media={data.item.fields.thumbnail} />
   </figure>
   {/if}
@@ -116,6 +116,16 @@
     @media (max-width: $mobile) {
       h1 {
         margin-bottom: $s1;
+      }
+
+      .cover {
+        margin-left: $s-1;
+        margin-right: $s-1;
+        margin-bottom: calc($s0 * -1);
+
+        :global(img) {
+          border-radius: 2px;
+        }
       }
     }
 
