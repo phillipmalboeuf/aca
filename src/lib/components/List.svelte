@@ -184,6 +184,12 @@
     }
   }
 
+  .list.Slider {
+    h3 {
+      margin-bottom: $s0;
+    }
+  }
+
   .embla {
     overflow: hidden;
     margin: 0 calc(-1 * $s-1);

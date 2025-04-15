@@ -23,9 +23,9 @@
   // })
 </script>
 
-<section class="flex flex--gapped flex--center" class:no-media={!item.fields.media} id={item.fields.id}>
+<section class="flex flex--gapped flex--end" class:no-media={!item.fields.media} id={item.fields.id}>
   {#if item.fields.media}
-  <div class="col col--9of12 col--mobile--12of12 media">
+  <div class="col col--8of12 col--mobile--12of12 media">
     <figure>
       <Media media={item.fields.media} rounded />
     </figure>
