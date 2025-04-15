@@ -13,7 +13,7 @@
   } = $props()
 </script>
 
-<a class={className} onclick={hide} class:anchor={link.fields.destination?.includes('#')} href={link.fields.destination} {...link.fields.external && { target: '_blank', rel: 'external' }}>{link.fields.label}{#if more}{@render more()}{/if}</a>
+<a class={className} onclick={hide} class:anchor={link.fields.destination?.includes('#')} href={link.fields.destination} {...link.fields.external && { target: '_blank', rel: 'external' }}>{@html link.fields.label}{#if more}{@render more()}{/if}</a>
 
 
 <style lang="scss">

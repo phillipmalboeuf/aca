@@ -77,6 +77,10 @@
     background-color: rgba($light, 0.25);
     row-gap: 0;
 
+    :global(.dark) & {
+      background-color: rgba($light, 0.35);
+    }
+
     @media (max-width: $mobile) {
       row-gap: $s2;
     }

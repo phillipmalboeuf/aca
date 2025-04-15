@@ -10,7 +10,7 @@ export const money = (value: any) => {
 }
 
 export const date = (value: string) => {
-  return DateTime.fromISO(value).setLocale('fr-CA').toLocaleString({ day: 'numeric', month: 'long', year: 'numeric' })
+  return DateTime.fromISO(value).setLocale('fr-CA').toLocaleString({ day: 'numeric', month: 'numeric', year: 'numeric' }).replaceAll('-', '.')
 }
 
 export const year = (value: string) => {
