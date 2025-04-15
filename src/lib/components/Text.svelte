@@ -23,7 +23,7 @@
   // })
 </script>
 
-<section class="flex flex--gapped flex--end" class:no-media={!item.fields.media} id={item.fields.id}>
+<section class="flex flex--gapped flex--center" class:no-media={!item.fields.media} id={item.fields.id}>
   {#if item.fields.media}
   <div class="col col--8of12 col--mobile--12of12 media">
     <figure>
@@ -32,7 +32,7 @@
   </div>
   {/if}
 
-  <div class="col col--12of12 flex flex--gapped">
+  <div class="col col--12of12 flex">
     {#if item.fields.titre}
     <div class:col--4of12={!!item.fields.media} class:hideonmobile={item.fields.titre === 'Anne Carrier Architectes'} class="titre col col--mobile--12of12 flex flex--column flex--gapped">
       <!-- {#if item.fields.sousTitre}
@@ -70,6 +70,15 @@
     //   margin: 0 auto;
     // }
 
+    .col--12of12 {
+      gap: 3px;
+      // margin: 0 calc($s-1 * -1);
+      // width: calc(100% + ($s-1 * 2));
+      // > .col--4of12 {
+      //   padding: 0 $s-1;
+      // }
+    }
+
     .hideonmobile {
       @media (max-width: $mobile) {
         display: none;
@@ -91,11 +100,13 @@
 
     &:not(.no-media) {
       .titre {
-        border-right: 1px solid $muted;
+        
       }
 
       .corps {
         padding-bottom: $s4;
+        padding-left: $s-1;
+        border-left: 1px solid $muted;
       }
     }
 
