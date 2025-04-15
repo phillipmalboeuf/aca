@@ -22,7 +22,8 @@
   onMount(() => {
     if (description.clientHeight > details.clientHeight) {
       overflowing = true
-      description_wrapper.style.height = `${details.clientHeight}px`
+      console.log(details.clientHeight)
+      description_wrapper.style.height = `${Math.floor(details.clientHeight / 10) * 10}px`
       height = description.clientHeight
     }
   })
@@ -172,7 +173,7 @@
         z-index: 1;
         bottom: 0;
         width: 100%;
-        height: $s1;
+        height: calc($s0 *2);
         transition: background 0.666s;
         // background: linear-gradient(to bottom, rgba($beige, 0), rgba($beige, 1) 75%);
         background: rgba($beige, 1);
