@@ -58,6 +58,10 @@
     z-index: 88;
     padding-bottom: $s3;
 
+    @media (max-width: $mobile) {
+      padding: $s-1;
+    }
+
     .logo {
       :global(path:not(.initial)) {
         opacity: 0;
@@ -136,12 +140,20 @@
 
       @media (max-width: $mobile) {
         width: 100%;
+        height: 50lvh;
+        padding: $s-1 $s-1 $s0;
+        transform: translateY(-100%);
       }
 
       > button {
         position: absolute;
         top: $s0;
         right: $s0;
+
+        @media (max-width: $mobile) {
+          // top: $s0;
+          right: $s-1;
+        }
       }
 
       &.visible {
@@ -154,7 +166,7 @@
         column-gap: $s2;
 
         @media (max-width: $mobile) {
-          margin-bottom: auto;
+          // margin-bottom: auto;
         }
 
         span {
