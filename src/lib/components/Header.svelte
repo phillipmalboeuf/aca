@@ -75,12 +75,14 @@
     :global(a), button {
       pointer-events: auto;
 
-      &:not(.logo) {
-        transition: color 333ms;
+      @media (max-width: $mobile) {
+        &:not(.logo) {
+          transition: color 333ms;
 
-        &:hover,
-        &:focus {
-          color: $taupe;
+          &:hover,
+          &:focus {
+            color: $taupe;
+          }
         }
       }
     }
