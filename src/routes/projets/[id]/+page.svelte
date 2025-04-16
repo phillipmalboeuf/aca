@@ -8,6 +8,7 @@
   import { year } from '$lib/formatters'
 
   import type { PageData } from './$types'
+  import { onNavigate } from '$app/navigation';
   let { data }: { data: PageData } = $props()
 
   let description_wrapper: HTMLDivElement
@@ -19,13 +20,21 @@
   let show = $state(false)
   let height = $state(0)
 
-  onMount(() => {
+  function setHeight() {
     if (description.clientHeight > details.clientHeight) {
       overflowing = true
       const paragraph = description.querySelector('p')
       description_wrapper.style.height = `calc(${paragraph.clientHeight + 30}px)`
       height = description.clientHeight
     }
+  }
+
+  onMount(() => {
+    setHeight()
+  })
+
+  onNavigate(() => {
+    return () => setHeight()
   })
 </script>
 
