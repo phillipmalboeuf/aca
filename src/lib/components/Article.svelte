@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
   import type { TypeArticleSkeleton } from '$lib/clients/content_types'
   import type { Entry } from 'contentful'
 
@@ -8,13 +9,31 @@
   import Rich from './Rich.svelte'
 
   const { article } : { article: Entry<TypeArticleSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string> } = $props()
+
+  let overflowing = $state(false)
+  let show = $state(false)
+  let height = $state(0)
+
+  let corps_wrapper: HTMLDivElement
+  let corps: HTMLDivElement
+  let media: HTMLElement
+
+  onMount(() => {
+    console.log(corps.clientHeight, media.clientHeight)
+    if (corps.clientHeight > media.clientHeight) {
+      overflowing = true
+      const paragraph = corps.querySelector('p')
+      corps_wrapper.style.height = `calc(${paragraph.clientHeight + 30}px)`
+      height = corps.clientHeight
+    }
+  })
 </script>
 
 
-<div class="flex flex--gapped">
-  <hr class="col col--12of12" />
+<div class="flex flex--gapped article_wrapper">
+  <hr class="col col--12of12" />  
 
-  <figure class="col col--4of12 col--mobile--12of12">
+  <figure class="col col--4of12 col--mobile--12of12 media" bind:this={media}>
     <Media media={article.fields.thumbnail} rounded />
   </figure>
 
@@ -23,17 +42,24 @@
     <h3>{article.fields.titre}</h3>
   </article>
 
-  <div class="col col--4of12 col--mobile--12of12">
-    <div class="flex flex--column flex--gapped">
+  <div class="col col--4of12 col--mobile--12of12 corps_wrapper" class:overflowing class:show style:--height={height} bind:this={corps_wrapper}>
+    <div class="flex flex--column flex--gapped corps" bind:this={corps}>
       <Rich body={article.fields.corps} />
     </div>
+
+    {#if overflowing}
+    <div class="overflowing_indicator">
+      <button class="button button--none" onclick={() => show = !show}>Lire {#if show}moins{:else}plus{/if}</button>
+    </div>
+    {/if}
   </div>
 </div>
 
 
 <style lang="scss">
-  div {
+  .article_wrapper {
     padding-bottom: $s2;
+    align-items: flex-start;
   }
 
   hr {
@@ -47,6 +73,42 @@
 
       @media (max-width: $mobile) {
         margin-bottom: $s1;
+      }
+    }
+  }
+
+  .corps_wrapper.overflowing {
+    position: relative;
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.666s;
+
+    .overflowing_indicator {
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      width: 100%;
+      height: 30px;
+      transition: background 0.666s;
+      // background: linear-gradient(to bottom, rgba($beige, 0), rgba($beige, 1) 75%);
+      background: rgba($grey, 1);
+      display: flex;
+      align-items: flex-end;
+
+      pointer-events: none;
+
+      button {
+        pointer-events: auto;
+        opacity: 0.5;
+      }
+    }
+
+    &.show {
+      height: calc((var(--height) * 1px) + $s3) !important;
+      
+      .overflowing_indicator {
+        // background: linear-gradient(to bottom, rgba($beige, 0), rgba($beige, 0) 75%);
+        background: rgba($grey, 0);
       }
     }
   }
