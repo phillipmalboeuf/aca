@@ -74,6 +74,15 @@
 
     :global(a), button {
       pointer-events: auto;
+
+      &:not(.logo) {
+        transition: color 333ms;
+
+        &:hover,
+        &:focus {
+          color: $taupe;
+        }
+      }
     }
 
     &.scrolled {
@@ -108,7 +117,7 @@
     > button {
       justify-content: flex-start;
       gap: 0;
-      transition: opacity 666ms;
+      transition: opacity 666ms, color 333ms;
       line-height: 0.8;
       padding-left: $s-1;
 

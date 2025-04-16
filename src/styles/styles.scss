@@ -183,6 +183,11 @@ fieldset {
 	border: none;
 }
 
+a,
+button {
+	-webkit-tap-highlight-color: transparent;
+}
+
 input,
 select,
 textarea,
