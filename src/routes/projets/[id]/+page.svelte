@@ -22,7 +22,8 @@
   onMount(() => {
     if (description.clientHeight > details.clientHeight) {
       overflowing = true
-      description_wrapper.style.height = `${Math.floor(details.clientHeight / 10) * 10}px`
+      const paragraph = description.querySelector('p')
+      description_wrapper.style.height = `calc(${paragraph.clientHeight + 30}px)`
       height = description.clientHeight
     }
   })
@@ -150,7 +151,11 @@
       .details {
 
         :global(table td:first-child) {
-          width: 49%;
+          width: 33%;
+
+          @media (max-width: $mobile) {
+            width: 49%;
+          }
         }
       }
 
@@ -179,7 +184,7 @@
         z-index: 1;
         bottom: 0;
         width: 100%;
-        height: calc($s0 *2);
+        height: 30px;
         transition: background 0.666s;
         // background: linear-gradient(to bottom, rgba($beige, 0), rgba($beige, 1) 75%);
         background: rgba($beige, 1);
