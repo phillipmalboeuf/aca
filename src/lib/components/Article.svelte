@@ -19,7 +19,6 @@
   let media: HTMLElement
 
   onMount(() => {
-    console.log(corps.clientHeight, media.clientHeight)
     if (corps.clientHeight > media.clientHeight) {
       overflowing = true
       const paragraph = corps.querySelector('p')

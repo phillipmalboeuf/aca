@@ -105,8 +105,11 @@
 
       .corps {
         padding-bottom: $s4;
-        padding-left: $s-1;
-        border-left: 1px solid $muted;
+
+        @media (min-width: $mobile) {
+          padding-left: $s-1;
+          border-left: 1px solid $muted;
+        }
       }
     }
 
@@ -117,6 +120,10 @@
     :global(hr) {
       margin: auto 0;
       background-color: transparent;
+
+      @media (max-width: $mobile) {
+        margin: $s2 0;
+      }
     }
 
     .corps {

@@ -147,6 +147,12 @@
           &.col--mobile--12of12 {
             padding-right: 0;
             border-right-color: transparent;
+
+            :global(h3) {
+              border-top: 1px solid $muted;
+              padding-top: $s0;
+              margin-right: $s-1;
+            }
           }
         }
       }
