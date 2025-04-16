@@ -22,7 +22,6 @@
   onMount(() => {
     if (description.clientHeight > details.clientHeight) {
       overflowing = true
-      console.log(details.clientHeight)
       description_wrapper.style.height = `${Math.floor(details.clientHeight / 10) * 10}px`
       height = description.clientHeight
     }
@@ -145,6 +144,13 @@
         &.details_wrapper {
           border-left: 1px solid $muted;
           border-right: none;
+        }
+      }
+
+      .details {
+
+        :global(table td:first-child) {
+          width: 49%;
         }
       }
 

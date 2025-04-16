@@ -85,7 +85,7 @@
       {#each data.projets.items as projet}
       <tr class="clickable-row" onclick={() => goto(`/projets/${projet.fields.id}`)} onmouseenter={() => active = projet} onmouseleave={() => active = undefined}>
         <td>{projet.fields.titre}</td>
-        <td>{projet.fields.region}</td>
+        {#if projet.fields.region}<td>{projet.fields.region}</td>{/if}
         <td>{projet.fields.catgorie?.fields.titre}</td>
         <td>{year(projet.fields.date)}</td>
       </tr>
@@ -158,16 +158,33 @@
       
       td {
         border-top: 1px solid $muted;
+        min-width: 0;
+        padding-right: $s0;
+
+        &:first-child {
+          width: calc(((100% / 3) * 2));
+
+          @media (max-width: $mobile) {
+            width: calc(50%);
+          }
+        }
+
+        &:nth-child(2) {
+          @media (min-width: $mobile) {
+            padding-left: calc($s-1 + 2px);
+          }
+        }
 
         &:last-child {
           text-align: right;
+          padding-right: 0;
         }
 
-        @media (max-width: $mobile) {
-          &:nth-child(3) {
-            display: none;
-          }
-        }
+        // @media (max-width: $mobile) {
+        //   &:nth-child(3) {
+        //     display: none;
+        //   }
+        // }
       }
     } 
 
@@ -193,6 +210,7 @@
         @media (max-width: $mobile) {
           order: -1;
           margin-bottom: $s1;
+          justify-content: flex-end;
         }
 
         a {
@@ -219,6 +237,11 @@
         background: rgba(255, 255, 255, 0.70);
         // backdrop-filter: blur(12px);
         // -webkit-backdrop-filter: blur(12px);
+
+        @media (max-width: $mobile) {
+          min-width: 0;
+          width: 50%;
+        }
 
         summary {
           cursor: pointer;
@@ -262,6 +285,16 @@
           li {
             border-top: 1px solid $muted;
             line-height: 1.5;
+
+            a {
+              opacity: 1;
+              transition: opacity 333ms;
+
+              &:hover,
+              &:focus {
+                opacity: 0.5;
+              }
+            }
           }
         }
       }

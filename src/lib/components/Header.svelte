@@ -97,7 +97,8 @@
       }
 
       @media (max-width: $mobile) {
-        width: 75%;
+        width: 92%;
+
         :global(svg) {
           width: 100%;
         }
@@ -113,6 +114,7 @@
 
       @media (max-width: $mobile) {
         width: auto !important;
+        padding-left: 0;
       }
 
       @media (min-width: $mobile) {

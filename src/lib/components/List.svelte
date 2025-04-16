@@ -166,6 +166,20 @@
           }
         }
       }
+
+      &#tables {
+        ul {
+          li:first-child {
+            :global(table td:first-child) {
+              width: 49%;
+
+              @media (min-width: $mobile) {
+                width: 50%;
+              }
+            }
+          }
+        }
+      }
     }
     
   }

@@ -394,6 +394,10 @@ table {
 		width: calc(100% / var(--length));
 		min-width: 100px;
 		vertical-align: top;
+
+		@media (max-width: $mobile) {
+			min-width: 70px;
+		}
 	}
 
 	th {
