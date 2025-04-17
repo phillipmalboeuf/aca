@@ -61,7 +61,7 @@
       {#each item.fields.media as media, index}
         {@const tags = media.metadata.tags.map(tag => tag.sys.id)}
         {@const tagged = !!media.metadata.tags.find(tag => tag.sys.id.startsWith('col'))}
-        <li class="media-item col col--mobile--12of12 {tags.map(tag => tag.startsWith('col') ? `${tag.replace('col', 'col--')}of15` : `tag--${tag}`).join(' ')}" class:col--4of15={!tagged && media.fields.file.details.image.width <= media.fields.file.details.image.height} class:col--7of15={!tagged && media.fields.file.details.image.width > media.fields.file.details.image.height} class:col--13of15={!tagged && media.fields.file.details.image.width > media.fields.file.details.image.height && !((index + 1) % 3)} class:description={media.fields.description}>
+        <li class="media-item col col--mobile--12of12 {tags.map(tag => tag.startsWith('col') ? `${tag.replace('col', 'col--')}of15` : `tag--${tag}`).join(' ')}" class:col--5of15={!tagged && media.fields.file.details.image.width <= media.fields.file.details.image.height} class:col--7of15={!tagged && media.fields.file.details.image.width > media.fields.file.details.image.height} class:col--10of15={!tagged && media.fields.file.details.image.width > media.fields.file.details.image.height && !((index + 1) % 3)} class:description={media.fields.description}>
           <figure>
             <Media {media} rounded />
             <figcaption class="flex flex--column flex--gapped">
