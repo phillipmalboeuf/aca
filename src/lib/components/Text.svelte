@@ -62,6 +62,7 @@
 
 <style lang="scss">
   section {
+    margin-bottom: $s1;
     // text-align: center;
     // min-height: 50lvh;
     
@@ -104,7 +105,7 @@
       }
 
       .corps {
-        padding-bottom: $s4;
+        padding-bottom: $s2;
 
         @media (min-width: $mobile) {
           padding-left: $s-1;
