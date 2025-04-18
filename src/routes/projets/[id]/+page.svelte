@@ -40,6 +40,16 @@
 
 
 <section class="flex" id={data.item.fields.id}>
+  {#if data.item.fields.cover}
+  <figure class="col col--12of12 cover">
+    <Media media={data.item.fields.cover} />
+  </figure>
+  {:else if data.item.fields.thumbnail}
+  <figure class="col col--12of12 cover">
+    <Media media={data.item.fields.thumbnail} />
+  </figure>
+  {/if}
+
   <div class="col col--4of12 col--mobile--12of12 flex flex--column">
     {#if data.item.fields.titre}
     <h1 class="h2">{data.item.fields.titre}</h1>
@@ -68,16 +78,6 @@
       {/if}
     </div>
   </div>
-
-  {#if data.item.fields.cover}
-  <figure class="col col--12of12 cover">
-    <Media media={data.item.fields.cover} />
-  </figure>
-  {:else if data.item.fields.thumbnail}
-  <figure class="col col--12of12 cover">
-    <Media media={data.item.fields.thumbnail} />
-  </figure>
-  {/if}
 
   <Contenu contenu={data.item.fields.contenu} />
 
@@ -122,6 +122,11 @@
 <style lang="scss">
   section {
     padding: $s4 0;
+
+    .cover {
+      margin-top: calc($s4 * -1);
+      margin-bottom: $s2;
+    }
 
     @media (max-width: $mobile) {
       h1 {
