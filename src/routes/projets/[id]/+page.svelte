@@ -21,7 +21,7 @@
   let height = $state(0)
 
   function setHeight() {
-    if (description.clientHeight > details.clientHeight) {
+    if (description?.clientHeight && description.clientHeight > details.clientHeight) {
       overflowing = true
       const paragraph = description.querySelector('p')
       description_wrapper.style.height = `calc(${paragraph.clientHeight + 30}px)`
