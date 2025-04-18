@@ -66,7 +66,7 @@
         {#each item.fields.items as listItem, index}
         <li class="embla__slide" style:--slide-width={'33.33%'}>
           {#if isTypeText(listItem)}
-            <Text item={listItem} first={index === 0} />
+            <Text item={listItem} first={index === 0} inside />
           {:else if isTypeArticle(listItem)}
             <Article article={listItem} />
           {:else if isTypeProjet(listItem)}
@@ -81,7 +81,7 @@
       {#each item.fields.items as listItem, index}
       <li class="col col--4of12" class:col--mobile--6of12={isTypeProjet(listItem)} class:col--mobile--12of12={!isTypeProjet(listItem)}>
       {#if isTypeText(listItem)}
-        <Text item={listItem} first={index === 0} />
+        <Text item={listItem} first={index === 0} inside />
       {:else if isTypeArticle(listItem)}
         <Article article={listItem} />
       {:else if isTypeProjet(listItem)}
@@ -117,7 +117,7 @@
       ul > .col {
         border-right: 1px solid $muted;
         padding: 0 $s-1;
-        padding-bottom: $s4;
+        padding-bottom: $s3;
 
         &:nth-child(3n) {
           border-right-color: transparent;

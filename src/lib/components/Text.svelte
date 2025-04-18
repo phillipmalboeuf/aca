@@ -7,10 +7,10 @@
   import Media from './Media.svelte'
   import Link from './Link.svelte'
 
-  let { item, full, small, first }: {
+  let { item, inside, small, first }: {
     item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
     first?: boolean
-    full?: boolean
+    inside?: boolean
     small?: boolean
   } = $props()
 
@@ -23,38 +23,47 @@
   // })
 </script>
 
-<section class="flex flex--gapped flex--center" class:no-media={!item.fields.media} id={item.fields.id}>
+<section class:no-media={!item.fields.media} class:inside id={item.fields.id}>
   {#if item.fields.media}
-  <div class="col col--8of12 col--mobile--12of12 media">
-    <figure>
-      <Media media={item.fields.media} rounded />
-    </figure>
+  <div class="flex media">
+    <div class="col col--8of12 col--mobile--12of12">
+      <figure>
+        <Media media={item.fields.media} rounded />
+      </figure>
+    </div>
   </div>
   {/if}
 
   <div class="col col--12of12 flex">
     {#if item.fields.titre}
-    <div class:col--4of12={!!item.fields.media} class:hideonmobile={item.fields.titre === 'Anne Carrier Architectes'} class="titre col col--mobile--12of12 flex flex--column flex--gapped">
-      <!-- {#if item.fields.sousTitre}
-        <small>{@html item.fields.sousTitre.replaceAll('\\n', '<br />')}</small>
-      {/if} -->
+    <div class:col--4of12={!!item.fields.media} class:hideonmobile={item.fields.titre === 'Anne Carrier Architectes'} class="titre col col--mobile--12of12">
       <h3>{@html item.fields.titre.replaceAll('\\n', '<br />')}</h3>
     </div>
     {/if}
 
     {#if item.fields.corps || item.fields.liens?.length}
-    <div class:col--8of12={!!item.fields.media} class="flex corps col col--mobile--12of12 flex--column flex--gapped">
-      {#if item.fields.corps}
-        <Rich body={item.fields.corps} />
-      {/if}
+    <div class:col--8of12={!!item.fields.media && !item.fields.secondMedia} class:col--4of12={!!item.fields.secondMedia} class="corps col col--mobile--12of12">
+      <article class="flex flex--column flex--gapped">
+        {#if item.fields.corps}
+          <Rich body={item.fields.corps} />
+        {/if}
 
-      {#if item.fields.liens?.length}
-      <ul class="list--nostyle">
-        {#each item.fields.liens as link}
-          <li><Link className="button button--muted" {link} /></li>
-        {/each}
-      </ul>
-      {/if}
+        {#if item.fields.liens?.length}
+        <ul class="list--nostyle">
+          {#each item.fields.liens as link}
+            <li><Link className="button button--muted" {link} /></li>
+          {/each}
+        </ul>
+        {/if}
+      </article>
+    </div>
+    {/if}
+
+    {#if item.fields.secondMedia}
+    <div class="col col--4of12 col--mobile--12of12 second">
+      <figure>
+        <Media media={item.fields.secondMedia} rounded />
+      </figure>
     </div>
     {/if}
   </div>
@@ -71,51 +80,53 @@
     //   margin: 0 auto;
     // }
 
-    .col--12of12 {
-      gap: 3px;
-      // margin: 0 calc($s-1 * -1);
-      // width: calc(100% + ($s-1 * 2));
-      // > .col--4of12 {
-      //   padding: 0 $s-1;
-      // }
+    .media {
+      margin-bottom: $s2;
+
+      @media (max-width: $mobile) {
+        margin-bottom: $s0;
+      }
+
+      @media (min-width: $mobile) {
+        width: calc(100% + ($s-1 * 2));
+      }
     }
+
+    &:not(.inside) {
+      @media (min-width: $mobile) {
+        .col--8of12 {
+          padding: 0 $s-1;
+          margin-left: calc($s-1 * -1);
+          margin-right: calc($s-1 * -1);
+          border-right: 1px solid $muted;
+        }
+
+        .col--12of12 {
+          margin: 0 calc($s-1 * -1);
+          width: calc(100% + ($s-1 * 2));
+
+          > .col {
+            border-right: 1px solid $muted;
+            padding: 0 $s-1 $s3;
+          }
+        }
+      }
+
+      @media (max-width: $mobile) {
+        .col--12of12 {
+          > .col {
+            border-top: 1px solid $muted;
+            padding: $s0 0 $s3;
+          }
+        }
+      }
+    }
+
 
     .hideonmobile {
       @media (max-width: $mobile) {
         display: none;
       }
-    }
-
-    &.no-media {
-      display: inline-flex;
-      width: auto;
-      margin: 0 auto;
-      height: 100%;
-      justify-content: center;
-      text-align: left;
-
-      .corps {
-        height: 100%;
-      }
-    }
-
-    &:not(.no-media) {
-      .titre {
-        
-      }
-
-      .corps {
-        padding-bottom: $s2;
-
-        @media (min-width: $mobile) {
-          padding-left: $s-1;
-          border-left: 1px solid $muted;
-        }
-      }
-    }
-
-    .media {
-      margin-bottom: $s2;
     }
 
     :global(hr) {
