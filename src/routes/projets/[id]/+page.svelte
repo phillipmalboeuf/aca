@@ -159,6 +159,11 @@
 
       .details {
 
+        :global(table:first-child tr:first-child td) {
+          border-top: none;
+          padding-top: 0;
+        }
+
         :global(table td:first-child) {
           width: 33%;
 
