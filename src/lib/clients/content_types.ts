@@ -124,6 +124,7 @@ export interface TypeTextFields {
     titre?: EntryFieldTypes.Symbol;
     id: EntryFieldTypes.Symbol;
     corps?: EntryFieldTypes.RichText;
+    maxPlus?: EntryFieldTypes.Boolean;
     media?: EntryFieldTypes.AssetLink;
     secondMedia?: EntryFieldTypes.AssetLink;
     liens?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeNavigationLinkSkeleton>>;

@@ -28,3 +28,9 @@
 </section>
 {/each}
 {/if}
+
+<style lang="scss">
+  section {
+    overflow-x: hidden;
+  }
+</style>

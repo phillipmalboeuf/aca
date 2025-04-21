@@ -14,6 +14,32 @@
     small?: boolean
   } = $props()
 
+  let body_wrapper: HTMLDivElement = $state()
+  let body: HTMLElement = $state()
+
+  let overflowing = $state(false)
+  let show = $state(false)
+  let height = $state(0)
+
+  function setHeight() {
+    const windowHeight = window.innerHeight * 0.75
+    if (body?.clientHeight && body.clientHeight > windowHeight) {
+      overflowing = true
+
+      const bottoms = Array.from(body.querySelectorAll('*')).map((el: HTMLElement) => el.offsetTop + el.offsetHeight)
+      const closestBottom = bottoms.sort((a, b) => a - b).find(bottom => bottom > windowHeight) || bottoms[bottoms.length - 1]
+      
+      body_wrapper.style.height = `calc(${closestBottom + 30}px)`
+      height = body.clientHeight
+    }
+  }
+
+  onMount(() => {
+    if (item.fields.maxPlus) {
+      setHeight()
+    }
+  })
+
   // let desktop = $state(false)
 
   // onMount(() => {
@@ -42,8 +68,8 @@
     {/if}
 
     {#if item.fields.corps || item.fields.liens?.length}
-    <div class:col--8of12={!!item.fields.media && !item.fields.secondMedia} class:col--4of12={!!item.fields.secondMedia} class="corps col col--mobile--12of12">
-      <article class="flex flex--column flex--gapped">
+    <div class:col--8of12={!!item.fields.media && !item.fields.secondMedia} class:col--4of12={!!item.fields.secondMedia} class="corps col col--mobile--12of12" class:overflowing class:show style:--height={height} bind:this={body_wrapper}>
+      <article class="flex flex--column flex--gapped" bind:this={body}>
         {#if item.fields.corps}
           <Rich body={item.fields.corps} />
         {/if}
@@ -56,6 +82,12 @@
         </ul>
         {/if}
       </article>
+
+      {#if overflowing}
+      <div class="overflowing_indicator">
+        <button class="button button--none" onclick={() => show = !show}>Lire {#if show}moins{:else}plus{/if}</button>
+      </div>
+      {/if}
     </div>
     {/if}
 
