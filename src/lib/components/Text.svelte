@@ -129,6 +129,10 @@
       }
     }
 
+    :global(h3) {
+      margin-bottom: $s0;
+    }
+
     :global(hr) {
       margin: auto 0;
       background-color: transparent;
@@ -136,6 +140,10 @@
       @media (max-width: $mobile) {
         margin: $s2 0;
       }
+    }
+
+    :global(hr + h3) {
+      margin-top: $s0;
     }
 
     .corps {
