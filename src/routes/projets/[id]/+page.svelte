@@ -81,6 +81,12 @@
 
   <Contenu contenu={data.item.fields.contenu} />
 
+  {#if data.item.fields.footer}
+  <footer class="padded col col--4of12 col--tablet--8of12 col--mobile--12of12">
+    <Rich body={data.item.fields.footer} />
+  </footer>
+  {/if}
+
   <nav class="col col--12of12 flex flex--gapped" class:flex--center={!data.item.fields.similaires?.length}>
     {#if data.item.fields.similaires?.length}
     <h3>Projets similaires</h3>
@@ -162,27 +168,6 @@
         }
       }
 
-      .details {
-
-        :global(table:first-child tr:first-child td) {
-          border-top: none;
-          padding-top: 0;
-        }
-
-        :global(table td:first-child) {
-          width: 33%;
-
-          @media (max-width: $mobile) {
-            width: 49%;
-          }
-        }
-      }
-
-      :global(td),
-      :global(th) {
-        border-top: 1px solid $muted;
-      }
-
       // h1 + h2 {
       //   margin-top: auto;
 
@@ -190,6 +175,24 @@
       //     margin-top: $s1;
       //   }
       // }
+    }
+
+    .details :global(table:first-child tr:first-child td) {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    :global(table td:first-child) {
+      width: 33%;
+
+      @media (max-width: $mobile) {
+        width: 49%;
+      }
+    }
+
+    :global(td),
+    :global(th) {
+      border-top: 1px solid $muted;
     }
 
     .description_wrapper.overflowing {
@@ -267,6 +270,12 @@
             }
           }
         }
+      }
+    }
+
+    footer {
+      @media (min-width: $mobile) {
+        margin-left: auto;
       }
     }
   }
