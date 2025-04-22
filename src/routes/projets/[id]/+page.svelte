@@ -140,13 +140,13 @@
       }
 
       .cover {
-        margin-left: $s-1;
-        margin-right: $s-1;
-        margin-bottom: calc($s0 * -1);
+        // margin-left: $s-1;
+        // margin-right: $s-1;
+        // margin-bottom: calc($s0 *1);
 
-        :global(img) {
-          border-radius: 2px;
-        }
+        // :global(img) {
+        //   border-radius: 2px;
+        // }
       }
     }
 
