@@ -124,6 +124,10 @@
       }
     }
 
+    &.inside .titre {
+      width: 100%;
+    }
+
     &:not(.inside) {
       @media (min-width: $mobile) {
         .col--8of12 {
