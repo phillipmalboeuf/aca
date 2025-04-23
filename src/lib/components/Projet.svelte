@@ -87,6 +87,10 @@
       //   margin-top: calc($s1 * -2.666 - $s3);
       // }
     }
+
+    @media (max-width: $mobile) {
+      min-height: 50lvh;
+    }
     
     > div {
       align-items: flex-start;
