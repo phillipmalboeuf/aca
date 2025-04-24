@@ -26,24 +26,22 @@
 <section class:spaced>
   {#if categories}
   <nav class="flex flex--middle flex--gapped">
-    <h6>Catégorie</h6>
+    <h3 class="flex flex--gapped flex--middle">{data.filter ? data.categories.items.find(c => c.fields.id === data.filter).fields.titre : 'Catégorie'} <svg width="18" height="9" viewBox="0 0 14 7"><path d="M1 1L7 6L13 1" stroke="currentColor"/></svg></h3>
     <details {open} style:--length={data.categories.items.length}>
-      <summary>{data.filter ? data.categories.items.find(c => c.fields.id === data.filter).fields.titre : 'Tous'} <svg width="14" height="7" viewBox="0 0 14 7"><path d="M1 1L7 6L13 1" stroke="currentColor"/></svg></summary>
+      <summary class="h3">Catégories</summary>
       <ul class="list--nostyle">
-        {#if data.filter}
         <li>
-          <a href="/projets">Tous</a>
+          <a class="h3" class:active={!data.filter} href="/projets">Tous</a>
         </li>
-        {/if}
-        {#each data.categories.items.filter(c => c.fields.id !== data.filter) as categorie}
+        {#each data.categories.items as categorie}
         <li id={categorie.fields.id}>
-          <a href="/projets?categorie={categorie.fields.id}{format === 'liste' ? '&format=liste' : ''}" onclick={() => { open = false }}>{categorie.fields.titre}</a>
+          <a class="h3" class:active={data.filter === categorie.fields.id} href="/projets?categorie={categorie.fields.id}{format === 'liste' ? '&format=liste' : ''}" onclick={() => { open = false }}>{categorie.fields.titre}</a>
         </li>
         {/each}    
       </ul>
     </details>
 
-    <div class="flex flex--gapped col col--4of12 col--mobile--12of12 formats">
+    <div class="flex flex--gapped col col--4of12 col--mobile--6of12 formats">
       <a href="/projets{data.filter ? `?categorie=${data.filter}` : ''}" class="h3" class:active={format === 'images'}>Images</a>
       <a href="/projets{data.filter ? `?categorie=${data.filter}&format=liste` : '?format=liste'}" class="h3" class:active={format === 'liste'}>Liste</a>
     </div>
@@ -192,13 +190,20 @@
       position: relative;
       padding: $s-1;
       margin-bottom: $s1;
+      flex-wrap: nowrap;
 
       @media (max-width: $mobile) {
-        justify-content: space-between;
-        margin-bottom: $s0;
+        // justify-content: space-between;
+        // margin-bottom: $s0;
+      }
+
+      > h3 {
+        width: auto;
       }
 
       .formats {
+        position: relative;
+        z-index: 1;
         --gap: #{$s1};
         margin-left: auto;
 
@@ -208,9 +213,9 @@
 
 
         @media (max-width: $mobile) {
-          order: -1;
-          margin-bottom: $s1;
-          justify-content: flex-end;
+          // order: -1;
+          // margin-bottom: $s1;
+          // justify-content: flex-end;
         }
 
         a {
@@ -230,29 +235,32 @@
       // }
 
       details {
-        position: relative;
-        min-width: 280px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 0;
+        max-width: 340px;
         border-radius: $radius;
         padding: $s-2 $s-1;
-        background: rgba(255, 255, 255, 0.70);
         // backdrop-filter: blur(12px);
         // -webkit-backdrop-filter: blur(12px);
 
-        @media (max-width: $mobile) {
-          min-width: 0;
-          width: 50%;
-        }
+        // @media (max-width: $mobile) {
+        //   min-width: 0;
+        //   width: 50%;
+        // }
 
         summary {
           cursor: pointer;
-          opacity: 0.5;
+          opacity: 0;
           display: flex;
           align-items: center;
 
-          svg {
-            margin-left: auto;
-            transition: transform 333ms;
-          }
+          // svg {
+          //   margin-left: auto;
+          //   transition: transform 333ms;
+          // }
         }
 
         &[open] {
@@ -263,36 +271,43 @@
           summary {
             // margin-bottom: $s-2;
 
-            svg {
-              transform: rotate(-180deg);
-            }
+            // svg {
+            //   transform: rotate(-180deg);
+            // }
           }
         }
 
         ul {
           position: absolute;
-          top: calc($s1 + ($s-2 * 1));
-          left: 0;
+          top: 0;
+          left: $s-1;
           width: 100%;
+          max-width: 340px;
           background: rgba(255, 255, 255, 0.70);
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           padding: $s-2 $s-1;
           border-radius: $radius;
-          border-top-left-radius: 0;
-          border-top-right-radius: 0;
           
           li {
             border-top: 1px solid $muted;
             line-height: 1.5;
 
+            &:first-child {
+              border-top: none;
+            }
+
             a {
-              opacity: 1;
+              opacity: 0.5;
               transition: opacity 333ms;
+
+              &.active {
+                opacity: 1;
+              }
 
               &:hover,
               &:focus {
-                opacity: 0.5;
+                opacity: 1;
               }
             }
           }
