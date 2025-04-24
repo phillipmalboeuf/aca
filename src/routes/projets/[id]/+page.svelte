@@ -238,6 +238,13 @@
     }
 
     footer {
+      border-left: 1px solid $muted;
+      
+      :global(table:first-child tr:first-child td) {
+        border-top: none;
+        padding-top: 0;
+      }
+
       @media (min-width: $mobile) {
         margin-left: auto;
       }
