@@ -92,11 +92,13 @@
   </table>
 
   {#if active}
+  {#key active.fields.id}
   <figure transition:fade class="thumbnail">
     {#if active.fields.thumbnail}
     <Media media={active.fields.thumbnail} width={400} rounded />
     {/if}
   </figure>
+  {/key}
   {/if}
   {/if}
 </section>
