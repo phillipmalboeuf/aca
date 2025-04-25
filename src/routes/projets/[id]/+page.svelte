@@ -99,7 +99,7 @@
         <a href="/projets/{projet.fields.id}">
           <figure>
             {#if projet.fields.thumbnail}
-            <Media media={projet.fields.thumbnail} rounded />
+            <Media media={projet.fields.thumbnail} rounded width={1000} />
             {/if}
 
             <figcaption class="flex flex--gapped">
@@ -239,7 +239,7 @@
 
     footer {
       border-left: 1px solid $muted;
-      
+
       :global(table:first-child tr:first-child td) {
         border-top: none;
         padding-top: 0;
