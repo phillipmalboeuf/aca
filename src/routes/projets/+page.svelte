@@ -14,11 +14,21 @@
   let { data, spaced, categories=true }: { data: PageData, spaced: boolean, categories: boolean } = $props()
 
   let open = $state(false)
+  let details = $state<HTMLDetailsElement>()
   let format = $derived($page.url.searchParams.get('format') || 'images')
 
   let active = $state<TypeProjet<"WITHOUT_UNRESOLVABLE_LINKS">>()
 
+  const handleClick = () => {
+    details?.removeAttribute('open')
+  }
+
   onMount(() => {
+    document.addEventListener('click', handleClick)
+
+    return () => {
+      document.removeEventListener('click', handleClick)
+    }
   })
 </script>
 
@@ -27,7 +37,7 @@
   {#if categories}
   <nav class="flex flex--middle flex--gapped">
     <h3 class="flex flex--gapped flex--middle">{data.filter ? data.categories.items.find(c => c.fields.id === data.filter).fields.titre : 'Catégorie'} <svg width="18" height="9" viewBox="0 0 14 7"><path d="M1 1L7 6L13 1" stroke="currentColor"/></svg></h3>
-    <details {open} style:--length={data.categories.items.length}>
+    <details {open} bind:this={details} style:--length={data.categories.items.length}>
       <summary class="h3">Catégories</summary>
       <ul class="list--nostyle">
         <li>
