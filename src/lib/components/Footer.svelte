@@ -61,7 +61,7 @@
       </nav>
     {/if}
   </div>
-  <div class="col col--4of12 col--mobile--12of12">
+  <div class="col col--4of12 col--mobile--12of12 last">
     {#if footer?.fields.links?.length > 1}
       <nav class="flex flex--gapped flex--bottom">
         <small><Link link={footer.fields.links[footer.fields.links.length - 1]} /></small>
@@ -117,6 +117,22 @@
         &.Courriel,
         &.Média-Sociaux {
           margin-bottom: calc($s-1 * -1);
+        }
+      }
+
+      &.flex--bottom {
+        @media (max-width: $mobile) {
+          gap: 0;
+        }
+      }
+    }
+
+    .last {
+      @media (max-width: $mobile) {
+        margin-top: calc($s2 * -1);
+        
+        small:first-child:last-child {
+          margin-left: calc(50% + $s-2 - 1px);
         }
       }
     }
