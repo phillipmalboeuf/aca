@@ -61,6 +61,11 @@
       {#each item.fields.media as media, index}
         {@const tags = media.metadata.tags.map(tag => tag.sys.id)}
         {@const tagged = !!media.metadata.tags.find(tag => tag.sys.id.startsWith('col'))}
+
+        {#if tags.includes('seul')}
+        <li class="col col--12of12 seul"></li>
+        {/if}
+
         <li class:col--5of15={(!tagged && media.fields.file.details.image.width <= media.fields.file.details.image.height) || tags.includes('col5')} class:col--7of15={(!tagged && media.fields.file.details.image.width > media.fields.file.details.image.height) || tags.includes('col7')} class:col--10of15={(!tagged && media.fields.file.details.image.width > media.fields.file.details.image.height && !((index + 1) % 3)) || tags.includes('col10')} class:description={media.fields.description} class="media-item col col--mobile--12of12 {tags.map(tag => tag.startsWith('col') ? `${tag.replace('col', 'col--')}of15` : `tag--${tag}`).join(' ')}">
           <figure>
             <Media {media} rounded />
@@ -80,9 +85,9 @@
   .gallerie {
     padding: $s1 0;
 
-    h4 {
-      margin-bottom: $s2;
-    }
+    // h4 {
+    //   margin-bottom: $s2;
+    // }
 
     // .embla {
     //   overflow: hidden;
@@ -141,12 +146,23 @@
     // }
 
     ul {
-      @media (min-width: $mobile) {
-        row-gap: $s3;
-      }
+      row-gap: 0;
+      // @media (min-width: $mobile) {
+      //   row-gap: $s3;
+      // }
+
+      // .seul {
+      //   display: block;
+      //   height: 0;
+      // }
     }
 
     .media-item {
+      margin-bottom: $s3;
+
+      @media (max-width: $mobile) {
+        margin-bottom: $s-1;
+      }
 
       figcaption {
         margin-top: $s-2;
@@ -158,6 +174,10 @@
 
       &.tag--droite {
         margin-left: auto;
+      }
+
+      &.tag--seul {
+        // margin-right: 100%;
       }
 
       // flex: 1;
