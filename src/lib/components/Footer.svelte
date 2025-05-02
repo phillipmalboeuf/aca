@@ -22,7 +22,7 @@
   
   <div class="col col--4of12 col--mobile--12of12">
     {#if contact?.fields.links?.length}
-      <nav class="flex flex--column flex--gapped">
+      <nav class="flex flex--column flex--gapped contact">
         {#each contact.fields.links as link}
         <div class="flex flex--gapped {link.fields.sousTitre?.replace(' ', '-')}">
           <div class="col col--5of12">
@@ -53,7 +53,11 @@
   </div>
 
   <div class="col col--4of12 col--mobile--6of12">
-    {#if footer?.fields.links?.length}
+    {#if footer?.fields.links?.length === 1}
+      <nav class="flex flex--gapped flex--bottom">
+        <small><Link link={footer.fields.links[footer.fields.links.length - 1]} /></small>
+      </nav>
+    {:else if footer?.fields.links?.length}
       <nav class="flex flex--gapped flex--bottom">
         {#each footer.fields.links.slice(0, -1) as link}
           <small class="col col--5of12 col--mobile--12of12"><Link {link} /></small>
@@ -114,10 +118,14 @@
       }
 
       div {
-        &.Courriel,
-        &.Média-Sociaux {
-          margin-bottom: calc($s-1 * -1);
+        &.Adresse,
+        &.Téléphone {
+          margin-bottom: calc($s-1 * 1);
         }
+      }
+
+      &.contact {
+        row-gap: 0;
       }
 
       &.flex--bottom {
