@@ -50,7 +50,7 @@
 
     <aside class="flex flex--gapped">
       <span>Anne Carrier Architectes</span>
-      <Locales />
+      <!-- <Locales /> -->
     </aside>
 
     <button class="button--none" onclick={() => visible = false} aria-label="Fermer le menu">
