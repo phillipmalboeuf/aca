@@ -19,7 +19,10 @@
 
   let active = $state<TypeProjet<"WITHOUT_UNRESOLVABLE_LINKS">>()
 
-  const handleClick = () => {
+  const handleClick = (e: MouseEvent) => {
+    if ((e.target as HTMLElement).id === 'categories') {
+      return
+    }
     details?.removeAttribute('open')
   }
 
@@ -38,7 +41,7 @@
   <nav class="flex flex--middle flex--gapped">
     <h3 class="flex flex--gapped flex--middle">{data.filter ? data.categories.items.find(c => c.fields.id === data.filter).fields.titre : 'Catégorie'} <svg width="18" height="9" viewBox="0 0 14 7"><path d="M1 1L7 6L13 1" stroke="currentColor"/></svg></h3>
     <details {open} bind:this={details} style:--length={data.categories.items.length}>
-      <summary class="h3">Catégories</summary>
+      <summary id="categories" class="h3">Catégories</summary>
       <ul class="list--nostyle">
         <li>
           <a class="h3" class:active={!data.filter} href="/projets">Tous</a>
@@ -211,6 +214,16 @@
 
       > h3 {
         width: auto;
+
+        svg {
+          transition: transform 333ms;
+        }
+
+        &:has(+ details[open]) {
+          svg {
+            transform: rotate(-180deg);
+          }
+        }
       }
 
       .formats {
@@ -291,7 +304,7 @@
 
         ul {
           position: absolute;
-          top: 0;
+          top: $s2;
           left: $s-1;
           width: 100%;
           max-width: 340px;
