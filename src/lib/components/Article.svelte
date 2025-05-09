@@ -8,7 +8,7 @@
   import Media from './Media.svelte'
   import Rich from './Rich.svelte'
 
-  const { article } : { article: Entry<TypeArticleSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string> } = $props()
+  const { article, noOverflow } : { article: Entry<TypeArticleSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>, noOverflow?: boolean } = $props()
 
   let overflowing = $state(false)
   let show = $state(false)
@@ -19,7 +19,7 @@
   let media: HTMLElement
 
   onMount(() => {
-    if (corps.clientHeight > media.clientHeight) {
+    if (!noOverflow && corps.clientHeight > media.clientHeight) {
       overflowing = true
       const paragraph = corps.querySelector('p')
       corps_wrapper.style.height = `calc(${paragraph.clientHeight + 30}px)`

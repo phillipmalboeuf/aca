@@ -23,7 +23,7 @@
   {:else if isTypeProjet(item)}
   <Projet {item} hero first={i === 0} />
   {:else if isTypeArticle(item)}
-  <Article article={item} />
+  <Article article={item} noOverflow={contenu.length === 1} />
   {/if}
 </section>
 {/each}
