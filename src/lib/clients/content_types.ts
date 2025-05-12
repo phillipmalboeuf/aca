@@ -104,6 +104,7 @@ export interface TypeProjetFields {
     region?: EntryFieldTypes.Symbol;
     date: EntryFieldTypes.Date;
     catgorie?: EntryFieldTypes.EntryLink<TypeCategorieSkeleton>;
+    categories?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeCategorieSkeleton>>;
     description?: EntryFieldTypes.RichText;
     details?: EntryFieldTypes.RichText;
     footer?: EntryFieldTypes.RichText;

@@ -10,12 +10,14 @@ export const load = async ({ url, params, cookies }) => {
   const filter = url.searchParams.get("categorie")
   const format = url.searchParams.get("format")
 
-  const [projets, categories] = await Promise.all([
-    content.getEntries<TypeProjetSkeleton>({ content_type: 'projet', locale: { en: 'en-CA' }[languageTag()] || 'fr-CA', order: ['-fields.date'], ...filter
-    ? { "fields.catgorie.fields.id": filter, "fields.catgorie.sys.contentType.sys.id": "categorie" }
-    : format !== 'liste' ? { "fields.archive[ne]": true } : {}}),
+  const [categories] = await Promise.all([
     content.getEntries<TypeCategorieSkeleton>({ content_type: 'categorie', locale: { en: 'en-CA' }[languageTag()] || 'fr-CA', order: ['fields.titre'] }),
   ])
+
+  const projets = await content.getEntries<TypeProjetSkeleton>({
+    content_type: 'projet', locale: { en: 'en-CA' }[languageTag()] || 'fr-CA', order: ['-fields.date'], ...filter
+    ? { "links_to_entry": categories.items.find(c => c.fields.id === filter)?.sys.id }
+    : format !== 'liste' ? { "fields.archive[ne]": true } : {}})
 
   return {
     filter,

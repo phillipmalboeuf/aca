@@ -6,7 +6,7 @@
   import Gallerie from '$lib/components/Gallerie.svelte'
   import Projet from '$lib/components/Projet.svelte'
   import Article from '$lib/components/Article.svelte'
-  import type { Entry } from 'contentful';
+  import type { Entry } from 'contentful'
 
   let { contenu }: { contenu: Entry<TypePageSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>['fields']['contenu'] } = $props()
 </script>
