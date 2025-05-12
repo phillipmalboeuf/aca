@@ -25,7 +25,7 @@
   const plugins: EmblaPluginType[] = [
     Autoplay({
       delay: 5000,
-      // stopOnInteraction: false,
+      stopOnInteraction: false,
     })
   ]
 </script>
