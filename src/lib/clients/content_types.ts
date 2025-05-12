@@ -15,6 +15,18 @@ export function isTypeArticle<Modifiers extends ChainModifiers, Locales extends 
     return entry.sys.contentType.sys.id === 'article'
 }
 
+export interface TypeCarouselFields {
+    id?: EntryFieldTypes.Symbol;
+    items?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeProjetSkeleton | TypeTextSkeleton>>;
+}
+
+export type TypeCarouselSkeleton = EntrySkeletonType<TypeCarouselFields, "carousel">;
+export type TypeCarousel<Modifiers extends ChainModifiers, Locales extends LocaleCode = LocaleCode> = Entry<TypeCarouselSkeleton, Modifiers, Locales>;
+
+export function isTypeCarousel<Modifiers extends ChainModifiers, Locales extends LocaleCode>(entry: Entry<EntrySkeletonType, Modifiers, Locales>): entry is TypeCarousel<Modifiers, Locales> {
+    return entry.sys.contentType.sys.id === 'carousel'
+}
+
 export interface TypeCategorieFields {
     titre: EntryFieldTypes.Symbol;
     id: EntryFieldTypes.Symbol;
@@ -87,7 +99,7 @@ export interface TypePageFields {
     id: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.Text;
     dark?: EntryFieldTypes.Boolean;
-    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeGallerieSkeleton | TypeListSkeleton | TypeProjetSkeleton | TypeTextSkeleton>>;
+    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticleSkeleton | TypeGallerieSkeleton | TypeListSkeleton | TypeProjetSkeleton | TypeTextSkeleton | TypeCarouselSkeleton>>;
 }
 
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
