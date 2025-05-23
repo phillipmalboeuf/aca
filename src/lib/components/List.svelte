@@ -81,7 +81,7 @@
       {#each item.fields.items as listItem, index}
       <li class="col col--4of12" class:col--mobile--6of12={isTypeProjet(listItem)} class:col--mobile--12of12={!isTypeProjet(listItem)}>
       {#if isTypeText(listItem)}
-        <Text item={listItem} first={index === 0} inside />
+        <Text item={listItem} first={index === 0} inside small />
       {:else if isTypeArticle(listItem)}
         <Article article={listItem} />
       {:else if isTypeProjet(listItem)}

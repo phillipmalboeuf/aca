@@ -49,10 +49,10 @@
   // })
 </script>
 
-<section class:no-media={!item.fields.media} class:inside id={item.fields.id}>
+<section class:no-media={!item.fields.media} class:inside class:small id={item.fields.id}>
   {#if item.fields.media}
   <div class="flex media">
-    <div class="col col--8of12 col--mobile--12of12">
+    <div class="col col--8of12 col--mobile--12of12" class:col--12of12={small}>
       <figure>
         <Media media={item.fields.media} rounded />
       </figure>
@@ -112,7 +112,7 @@
     //   margin: 0 auto;
     // }
 
-    .media {
+    &:not(.small) .media {
       margin-bottom: $s2;
 
       @media (max-width: $mobile) {
@@ -122,6 +122,10 @@
       @media (min-width: $mobile) {
         width: calc(100% + ($s-1 * 2));
       }
+    }
+
+    &.small .media {
+      margin-bottom: $s0;
     }
 
     &.inside .titre {
