@@ -44,11 +44,16 @@
   <div class="col col--4of12 col--mobile--12of12 corps_wrapper" class:overflowing class:show style:--height={height} bind:this={corps_wrapper}>
     <div class="flex flex--column flex--gapped corps" bind:this={corps}>
       <Rich body={article.fields.corps} />
+
+      {#if noOverflow}
+        <a href={`/news`} class="button button--none"><u>Retour</u></a>
+      {/if}
     </div>
 
     {#if overflowing}
     <div class="overflowing_indicator">
-      <button class="button button--none" onclick={() => show = !show}>Lire {#if show}moins{:else}plus{/if}</button>
+      <a href={`/news/${article.fields.id}`} class="button button--none">Lire plus</a>
+      <!-- <button class="button button--none" onclick={() => show = !show}>Lire {#if show}moins{:else}plus{/if}</button> -->
     </div>
     {/if}
   </div>

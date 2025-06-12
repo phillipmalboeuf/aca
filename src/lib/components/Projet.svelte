@@ -27,13 +27,13 @@
     {/if}
 
     {#if hero}
-      {#if item.fields.titre}
+      <!-- {#if item.fields.titre}
         <h4>{item.fields.titre}</h4>
       {/if}
 
       {#if item.fields.region}
         <h4>{item.fields.region}</h4>
-      {/if}
+      {/if} -->
     {:else}
       <aside class="col col--9of12 col--mobile--12of12 flex flex--column">
         {#if item.fields.titre}

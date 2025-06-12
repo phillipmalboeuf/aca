@@ -494,7 +494,8 @@ strong,
 
 		pointer-events: none;
 
-		button {
+		button,
+		a {
 			pointer-events: auto;
 			opacity: 0.5;
 		}
